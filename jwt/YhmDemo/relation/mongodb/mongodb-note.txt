@@ -1,0 +1,24 @@
+
+
+MongoDB 使用说明
+
+1.MongoDB使用的端口固定为 27318 (不要使用默认端口)
+2.数据库全启用认证, 即启动参数添加 -auth (或参考 mongodb.conf 文件)
+3.使用时绑定IP, 即启动参数添加 -bind_ip 127.0.0.1 (或参考 mongodb.conf 文件)
+
+
+
+启用数据库命令参考:
+mongod -dbpath ..\data -auth --port 27318
+mongod -f ../mongodb.conf
+
+本地连接数据命令: mongo 127.0.0.1:27318
+
+创建数据库 use XXX(XXX为数据库名)
+
+添加用户ids/ids: db.addUser("ids","ids")
+
+
+更多常用操作请参考MongoDB相关官方文档
+
+

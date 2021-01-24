@@ -1,0 +1,82 @@
+Java memcached release[1] - SockIOPool 
+1. SockIOPool – SockIO池化管理，为上层提供的接口是实例化函数[主要是指定memcached服务器地址，各个 
+机器的权重]；根据key&hashCode获取SockIO-网络连接句柄；根据服务器地址获取SockIO；关闭池。上层在获取 
+到SockIO后可以进行读写操作，在正常使用完SockIO后将其归还给池，如果在使用过程中出现问题则将这个网络 
+连接关闭，同时还暴露了SocketChannel提供了进行NIO编程的接口。 
+SockIOPool有在static可见范围维护一个String池名到SockIOPool的映射。
+
+SockIO进入availPool或者busyPool都会把进入的时间写入，作为空闲时间或者使用时间的参考
+
+SockIOPool属性 
+boolean initialized = false – 初始化是否完成的标志，只有初始化完成后上层才能正常使用池 
+int initConn = 10 – 初始化时对每个服务器建立的连接数目 
+int minConn = 5 – 每个服务器建立最小的连接数，当自查线程发现与某个服务器建立连接数目小于这个数目时 
+会弥补剩下的连接 
+int maxConn = 100 -每个服务器建立最大的连接数，当自查线程发现与某个服务器建立连接数目大于这个数目 
+时就会逐个检查这些连接的空闲时间是否大于maxConn，如果大于会关闭这些连接，直到连接数等于maxConn 
+long maxIdle = 1000 * 60 * 5 – 最大空闲时间 
+long maxBusyTime = 1000 * 30 – 最长租用时间，其使用主要有两点，一是自查线程会检查正在被租用的连接， 
+如果发现已经被租用的时间超过这个值得，会将其从被租用的记录里剔除，并关闭这个连接；另一个应用是 
+上层进行MUTIL操作时，读取所有的数据的时间不能超过这个时间。 
+long maintSleep = 1000 * 30 – 自查线程周期进行工作，其每次休眠时间 
+int socketTO = 1000 * 3 – Socket阻塞读取数据的超时时间 
+int socketConnectTO = 1000 * 3 - Socket阻塞建立连接的等待时间 
+boolean aliveCheck = false -根据key&hashCode获取SockIO时，通过hash bucket得到SockIO后，如果这个值 
+是true会检查Socket是否已经连接，如果连接建立正常还会想服务器发送“version\r\n”的指令，并读取数据，这 
+个过程没有出错才会返回SockIO给上层用，否则返回NULL。所以一般设置为false。 
+boolean nagle = false – Socket的参数，如果是true在写数据时不缓冲，立即发送出去 
+int hashingAlg = NATIVE_HASH – 池的hash bucket方式，主要是分为简单的hashCode取hash bucket数目的模 
+和一致性哈希，前者在扩容时会造成命中率很大程度的下降，后者的好处是扩容时很大程度减少了缓存的重新 
+分布 
+String[] servers – memcached服务器地址配置 
+Integer[] weights – memcached服务器权重配置 
+List buckets - hash bucket，一个服务器地址，其权重是N，则往这个bucket中添加N个服务器地址 
+TreeMap
+boolean failover/failback
+
+池初始化 
+在初始化阶段主要是完成一些值的初始化，再就是根据hashingAlg来设置hash bucket，如果是 
+CONSISTENT_HASH则使用上面提到的一致性HASH算法建立一致性哈希表，如果不是则使用上面提到的建立 
+hash bucket，接下来根据initConn和所有服务器地址创建数目为initConn的连接数目。如果maintSleep大于0则 
+启动整个连接池的自查线程。其中创建连接的逻辑如下：如果hostDead和hostDeadDur都持有一个服务器地址 
+的时候，会看最近失败时间+没必要连接时间间隔是否大于当前时间，大于的话直接放弃创建连接过程退出， 
+小于则发起连接，发起连接创建有三种情况，一种是在时间期限内创建成功，则清空其可能在hostDead和 
+hostDeadDur的记录，再将这个连接放入到availPool记录里面；一种是连接没有创建成功则将SockIO放入到 
+deadPool里给自查线程关闭连接和释放资源；最后一种是由于网络异常或者超时异常，第二种和第三种情况 
+发生则需要往hostDead和hostDeadDur里添加这个服务器地址的相关记录，同时将availPool里的这个服务器
+地址的记录清除。
+
+租还SockIOPool 
+a. key & hashCode - 租
+先根据key & hashCode到hash bucket里找到其应该连接的服务器地址：如果有hashCode则直接使用 
+hashCode，没有则根据hashingAlg取hash值。如果是一致性哈希算法则到consistentBuckets里找计算出的大hash 
+值的点，没找到则取第一个；如果是其他的则hash bucket取模。
+到availPool里根据服务器地址找到可用的连接列表，迭代这个列表，如果有可用的则从availPool取出， 
+并加入到busyPool，如果不可用则加入到deadPool给自查线程关闭连接。经过上面的过程还没有得到连接则调用 
+上面提到的创建连接的逻辑，如果创建成功加入到busyPool。
+在得到一个连接SockIO后，再进行一些检查，如果连接不可用则加入到deadPool，可用如果aliveCheck 
+为true则会进行上面提到的自检操作，如果自检发生错误则从busyPool中移除并关闭连接。如果在2没有得到连 
+接，并且failover为false则直接返回不再尝试连接到其他机器了；否则会组装一些新的key到hash bucket里去找剩 
+下的服务器地址按2建立连接。 
+b. host - 租 
+到availPool里根据服务器地址找到可用的连接列表，迭代这个列表，如果有可用的则从availPool取出， 
+并加入到busyPool，如果不可用则加入到deadPool给自查线程关闭连接。经过上面的过程还没有得到连接则调用 
+上面提到的创建连接的逻辑，如果创建成功加入到busyPool。 
+c. 还
+将此连接SockIO从busyPool的记录中移除，如果连接可用则将连接加入到availPool的记录里面。
+
+自查线程 
+自查线程主要提供两个逻辑，启动和关闭，启动时周期性调用池的自查逻辑，关闭则通过一个是否停止标志来的 
+设置来标记停止，在中断可能正在休眠的自查线程。 
+池的自查逻辑主要是： 
+a. 到availPool检查各个服务器目前可用连接数目的个数，如果小于minConn则创建连接来弥补差额，创建的新 
+的连接加入到availPool中。 
+b. 再到availPool检查各个服务器目前可用连接数目的个数，如果大于maxConn会逐个检查这些连接的空闲时间 
+是否大于maxConn，如果大于会关闭这些连接，直到连接数等于maxConn。空闲时间的计算就是当前时间和这个 
+连接进入availPool时间的差值。 
+c. 到busyPool检查，发现某个连接已经被租用的时间超过这个值得，会将其从被租用的记录里剔除，并将其加入 
+到deadPool中。
+d. 迭代deadPool中所有的连接，关闭这些连接。
+
+关闭过程主要是先停止自查线程，直到自查线程结束运行，再迭代availPool和busyPool将里面的网络连接 
+SockIO，关闭SockIO主要是关闭输入输出流，关闭Socket。

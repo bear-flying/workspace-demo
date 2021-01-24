@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+
+    <mapping>
+        <path>/*</path>
+        <decorator>/WEB-INF/view/commons/decorator-main.jsp</decorator>
+    </mapping>
+
+
+    <!--Exclude-->
+    <!--<mapping path="/login*" exclue="true"/>-->
+    <!--<mapping path="/public/*" exclue="true"/>-->
+
+    <mapping exclue="true">
+        <path>/login*</path>
+        <path>/public/*</path>
+    </mapping>
+
+</sitemesh>

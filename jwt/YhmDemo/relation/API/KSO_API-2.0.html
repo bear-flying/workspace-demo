@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link href="bootstrap.min.css" rel="stylesheet"/>
+    <title>KSO API</title>
+</head>
+<body class="container">
+<h2 class="page-header">KSO API
+    <small>V-2.0</small>
+</h2>
+
+<div class="alert alert-info">
+    <strong>NOTE</strong>: All the API need
+    <mark>access_token</mark>
+    parameter exclude <span class="badge">public</span> API, if lost access_token, will response status 401
+    <br/>
+    A demo URL:
+    <em>http://localhost:8080/kso/api/app/account_info?access_token=0e5a1b2f-02fd-4594-bd4c-a107ed344f61</em>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>RS(Resource-Server) Validate access_token API
+                <small class="badge">public</small>
+            </h3>
+
+            <p class="text-info">Call the API by Backend Resource-Server for validating the request access_token is
+                available or not. KSO support Restful style validation as follow:</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI: <code>/remote/oauth/token_validation</code> <span
+                            class="label label-warning">POST</span> <span class="label label-success">REST</span>
+                    </p>
+
+                    <p>
+                        Content-Type:
+                        <mark>application/json</mark>
+                    </p>
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Name</th>
+                                <th>Param-Value</th>
+                                <th>Required</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>accessToken</td>
+                                <td>{access_token}</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>appKey</td>
+                                <td>{appKey}</td>
+                                <td>Optional</td>
+                            </tr>
+                            <tr>
+                                <td>resourceId</td>
+                                <td>{resourceId}</td>
+                                <td>Optional</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>{"accessToken":"94e2e8cd-88e4-4e3c-ae74-fd3a64e912ae","appKey":"a2c69552d9324a5cbb08194aca16378b","resourceId":"app-resource"}</code>
+                            <br/>
+                            <span class="text-muted">Include all</span>
+                        </p>
+
+                        <p>
+                            <code>{"accessToken":"94e2e8cd-88e4-4e3c-ae74-fd3a64e912ae","appKey":"a2c69552d9324a5cbb08194aca16378b"}</code>
+                            <br/>
+                            <span class="text-muted">Include 'accessToken', 'appKey'</span>
+                        </p>
+
+                        <p>
+                            <code>{"accessToken":"94e2e8cd-88e4-4e3c-ae74-fd3a64e912ae","resourceId":"app-resource"}</code>
+                            <br/>
+                            <span class="text-muted">Include 'accessToken', 'resourceId'</span>
+                        </p>
+
+                        <p>
+                            <code>{"accessToken":"94e2e8cd-88e4-4e3c-ae74-fd3a64e912ae"}</code>
+                            <br/>
+                            <span class="text-muted">Only 'accessToken'</span>
+                        </p>
+                    </div>
+                    <br/>
+
+                    <p>
+                        Response:
+                        <mark>true</mark>
+                        (Validating successful)
+                        or
+                        <mark>false</mark>
+                        (Validating failed)
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>Remote Register Member API
+                <small class="badge">public</small>
+            </h3>
+
+            <p class="text-info">Call the API for Register a new Member from ClientDetails.</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI: <code>/remote/oauth/register_member</code> <span
+                            class="label label-warning">POST</span> <span class="label label-success">REST</span>
+                    </p>
+
+                    <p>
+                        Content-Type:
+                        <mark>application/json</mark>
+                    </p>
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Name</th>
+                                <th>Param-Value</th>
+                                <th>Required</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>clientId</td>
+                                <td>{appKey}</td>
+                                <td>Yes</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>fullName</td>
+                                <td>{fullName}</td>
+                                <td>Yes</td>
+                                <td>Member full name</td>
+                            </tr>
+                            <tr>
+                                <td>username</td>
+                                <td>{username}</td>
+                                <td>Yes</td>
+                                <td>Member login name, length >= 6</td>
+                            </tr>
+                            <tr>
+                                <td>password</td>
+                                <td>{password}</td>
+                                <td>Yes</td>
+                                <td>Member login password, length >= 8</td>
+                            </tr>
+                            <tr>
+                                <td>roleName</td>
+                                <td>{roleName}</td>
+                                <td>Yes</td>
+                                <td>Member role name</td>
+                            </tr>
+                            <tr>
+                                <td>phoneNumber</td>
+                                <td>{phoneNumber}</td>
+                                <td>Yes</td>
+                                <td>Member phone number</td>
+                            </tr>
+                            <tr>
+                                <td>email</td>
+                                <td>{email}</td>
+                                <td>Optional</td>
+                                <td>Member email address</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>{"clientId":"7c37d635dc614007905d784df5ce77bc","fullName":"李四","username":"lisi023","password":"12345678","roleName":"ADMIN","phoneNumber":"13325413262","email":"lisi@kso.com"}</code>
+                            <br/>
+                            <span class="text-muted">Include all</span>
+                        </p>
+
+                        <p>
+                            <code>{"clientId":"7c37d635dc614007905d784df5ce77bc","fullName":"张三","username":"zhangsan02","password":"12345678","roleName":"ADMIN","phoneNumber":"13625412011"}</code>
+                            <br/>
+                            <span class="text-muted">Exclude 'email'</span>
+                        </p>
+
+                    </div>
+                    <br/>
+
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>{"success":true,"openid":"860430638207682163","errors":[]}</mark>
+                        (Register successful)
+                    </p>
+                    <p>
+                        <mark>{"success":false,"openid":null,"errors":["312"]}
+                        </mark>
+                        (Register failed, include error details in response)
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>Validate username existed or not
+                <small class="badge">public</small>
+            </h3>
+
+            <p class="text-info">Call the API for validate the username existed or not in KSO</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI: <code>/remote/oauth/username_validation</code> <span
+                            class="label label-warning">POST</span> <span class="label label-success">REST</span>
+                    </p>
+
+                    <p>
+                        Content-Type:
+                        <mark>application/json</mark>
+                    </p>
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Name</th>
+                                <th>Param-Value</th>
+                                <th>Required</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>clientId</td>
+                                <td>{appKey}</td>
+                                <td>Yes</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>username</td>
+                                <td>{username}</td>
+                                <td>Yes</td>
+                                <td>Length >= 6</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>{"clientId":"7c37d635dc614007905d784df5ce77bc","username":"wangwu01"}</code>
+                        </p>
+
+                    </div>
+                    <br/>
+
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>{"success":true,"errors":[]}</mark>
+                        (Username not existed)
+                    </p>
+                    <p>
+                        <mark>{"success":false,"errors":["301"]}
+                        </mark>
+                        (Username already existed or validate parameters failed)
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="well well-sm">
+            <h3>[APP Mobile] Get access_token
+                <small class="badge">public</small>
+            </h3>
+
+            <p class="text-info">Mobile APP Login KSO</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI: <code>/oauth/token</code> <span class="label label-warning">POST</span>
+                    </p>
+
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>grant_type</td>
+                                <td>password</td>
+                                <td>Fixed</td>
+                            </tr>
+                            <tr>
+                                <td>scope</td>
+                                <td>read</td>
+                                <td>Fixed</td>
+                            </tr>
+                            <tr>
+                                <td>client_id</td>
+                                <td>{appKey}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>client_secret</td>
+                                <td>{appSecret}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>username</td>
+                                <td>{username}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>password</td>
+                                <td>{password}</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>/oauth/token?client_id=e71ae1174f2840f197eb15e6aedbcfc2Zb5Qp6xE&client_secret=xuaoMCmrK5EMdTKiHNgr1miMQTSOYGqOIZrujmwy&grant_type=password&scope=read&username={username}&password={password}</code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>
+                            {"access_token":"f9355f8d-110a-4e81-904e-8e1c426fdde8","token_type":"bearer","refresh_token":"b9d8a82b-39d0-43da-b665-102848d1ee9d","expires_in":43199,"scope":"read"}
+                        </mark>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>[WEB SSO] Get access_token
+                <small class="badge">public</small>
+            </h3>
+
+            <p class="text-info">Web Application Login KSO</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Request URI: <code>/oauth/token</code> <span class="label label-warning">POST</span>
+
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>grant_type</td>
+                                <td>authorization_code</td>
+                                <td>Fixed</td>
+                            </tr>
+                            <tr>
+                                <td>client_id</td>
+                                <td>{appKey}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>client_secret</td>
+                                <td>{appSecret}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>redirect_uri</td>
+                                <td>{redirect_uri}</td>
+                                <td>The client registered Callback-URL</td>
+                            </tr>
+                            <tr>
+                                <td>code</td>
+                                <td>{code}</td>
+                                <td>The code that from after login successful</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>/oauth/token?client_id=c2f833fe192b456f973933f7db96a99c0qrUNqop&client_secret=uo7q4zyYtD93unT756w8cE62dAs4qG0J1eWl2CbO&grant_type=authorization_code&code={code}&redirect_uri=http%3A%2F%2F175.25.30.7%3A8080%2Fkso-web-demo%2Foauth_callback </code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>
+                            {"access_token":"f9355f8d-110a-4e81-904e-8e1c426fdde8","token_type":"bearer","refresh_token":"b9d8a82b-39d0-43da-b665-102848d1ee9d","expires_in":43199,"scope":"read"}
+                        </mark>
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>[API 3rd Party] Get access_token
+                <small class="badge">public</small>
+            </h3>
+
+            <p class="text-info">The API Developer Login KSO</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI: <code>/oauth/token</code> <span class="label label-warning">POST</span>
+                    </p>
+
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>grant_type</td>
+                                <td>client_credentials</td>
+                                <td>Fixed</td>
+                            </tr>
+                            <tr>
+                                <td>scope</td>
+                                <td>read</td>
+                                <td>Fixed</td>
+                            </tr>
+                            <tr>
+                                <td>client_id</td>
+                                <td>{appKey}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>client_secret</td>
+                                <td>{appSecret}</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>/oauth/token?client_id=b2368ad423e645de9f0f462356472a90S3G1qp5L&client_secret=JUL35rYg7eU2bSKGg2tuHqTJaoTnwMh7pibIDdT6&grant_type=client_credentials&scope=read</code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>
+                            {"access_token":"8f26db5a-68e8-4a62-b6a6-441148237bcd","token_type":"bearer","expires_in":43199,"scope":"read"}
+                        </mark>
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>Refresh access_token
+                <small class="badge">public</small>
+            </h3>
+
+            <p class="text-info">Refresh the access_token, get a new access_token by refresh_token</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI: <code>/oauth/token</code> <span class="label label-warning">POST</span>
+                    </p>
+
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>grant_type</td>
+                                <td>refresh_token</td>
+                                <td>Fixed</td>
+                            </tr>
+                            <tr>
+                                <td>client_id</td>
+                                <td>{appKey}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>client_secret</td>
+                                <td>{appSecret}</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>refresh_token</td>
+                                <td>{refresh_token}</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>/oauth/token?client_id=a27d9be6fbbc4c0d8f3eb568fc85a6caHZ2fSJjB&client_secret=xpdV6EEhFfb0ZwC9hSWWdCXKOxhY5quMO2dqTYjo&grant_type=refresh_token&refresh_token=b36f4978-a172-4aa8-af89-60f58abe3ba1</code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>
+                            {"access_token":"d3710705-e0a3-4235-9413-d5a265d79f4e","token_type":"bearer","refresh_token":"82acf505-cfb9-4c19-996f-c2505cba1224","expires_in":43199,"scope":"read"}
+                        </mark>
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>Get Account Details by access_token</h3>
+
+            <p class="text-info">Use the API for get current account information</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI:
+                        <br/>
+                        [APP Mobile] <code>/api/app/account_info</code> <span class="label label-info">GET</span>
+                        <span class="label label-success">REST</span>
+                        <br/>
+                        [Web SSO] <code>/api/web/account_info</code> <span class="label label-info">GET</span>
+                        <span class="label label-success">REST</span>
+                        <br/>
+                        [API 3rd Party] <code>/api/v1/account_info</code> <span class="label label-info">GET</span>
+                        <span class="label label-success">REST</span>
+                    </p>
+
+                    <p>
+                        Content-Type:
+                        <mark>application/json</mark>
+                    </p>
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>access_token</td>
+                                <td>{access_token}</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>/api/app/account_info?access_token=f9355f8d-110a-4e81-904e-8e1c426fdde8</code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>
+                            {"username":"zhangsan","openid":"2610650774483061598","email":"zhangsan@ose.com","phoneNumber":"136587555","roleName":"ADMIN"}
+                        </mark>
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>Reset current account password</h3>
+
+            <p class="text-info">Use the API for reset the current account password</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI:
+                        <br/>
+                        [APP Mobile] <code>/api/app/reset_password</code> <span class="label label-warning">POST</span>
+                        <span class="label label-success">REST</span>
+                        <br/>
+                        [Web SSO] <code>/api/web/reset_password</code> <span class="label label-warning">POST</span>
+                        <span class="label label-success">REST</span>
+                    </p>
+
+                    <p>
+                        Content-Type:
+                        <mark>application/json</mark>
+                    </p>
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>oldPassword</td>
+                                <td>{oldPassword}</td>
+                                <td>Account old password</td>
+                            </tr>
+                            <tr>
+                                <td>newPassword</td>
+                                <td>{newPassword}</td>
+                                <td>Account new password, length >= 8</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>{"oldPassword":"12345678","newPassword":"Lo5874#52"}</code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>{"success":true,"errors":[]}</mark>
+                        (Reset password successful)
+                    </p>
+                    <p>
+                        <mark>{"success":false,"errors":["302"]}
+                        </mark>
+                        (Reset password has errors)
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>[APP Mobile] Get App List</h3>
+
+            <p class="text-info">Use the API for get mobile app list</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI:
+                        <br/>
+                        <code>/api/app/app_list</code> <span class="label label-info">GET</span>
+                        <span class="label label-success">REST</span>
+                    </p>
+
+                    <p>
+                        Content-Type:
+                        <mark>application/json</mark>
+                    </p>
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>access_token</td>
+                                <td>{access_token}</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>/api/app/app_list?access_token=f9355f8d-110a-4e81-904e-8e1c426fdde8</code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>
+                            {"success":true,"errors":[],"apps":[{"logoUrl":"http://localhost:8080/kso/public/app_image/uuid?w=130","name":"Test-APP","iosAppId":"255555252","androidAppId":"4545546511","appKey":"app_key1","appSecret":"app_secret1"},{"logoUrl":"http://localhost:8080/kso/public/app_image/null?w=130","name":"aeefdfdd","iosAppId":"koowe","androidAppId":"sfewdfsd","appKey":"app_key2","appSecret":"app_secret2"}]}
+                        </mark>
+                        <br/>
+                        (Response successful)
+                    </p>
+                    <p>
+                        <mark>{"success":false,"errors":["318"]}
+                        </mark>
+                        <br/>
+                        (若该appKey不是主应用,则响应错误码 318)
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>[Web SSO] Get App List</h3>
+
+            <p class="text-info">Use the API for get web app list</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI:
+                        <br/>
+                        <code>/api/web/app_list</code> <span class="label label-info">GET</span>
+                        <span class="label label-success">REST</span>
+                    </p>
+
+                    <p>
+                        Content-Type:
+                        <mark>application/json</mark>
+                    </p>
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>access_token</td>
+                                <td>{access_token}</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>/api/web/app_list?access_token=f9355f8d-110a-4e81-904e-8e1c426fdde8</code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>
+                            {"success":true,"errors":[],"apps":[{"name":"KSO DEMO","homePage":"http://localhost:7777/WEB-DEMO","appKey":"fd15d938a49844afacf0efdb397758adlYcJ8ba4","webServerRedirectUri":"http://localhost:7777/WEB-DEMO/oauth_callback","trusted":true},{"name":"AEDDS","homePage":"https://kbp.idscom.com","appKey":"0fcdce5bcef94e85a1c0d9fe3c2ca277vb70RVSg","webServerRedirectUri":"http://localhost:7777/WEB-DEMO/oauth_callback","trusted":false}]}
+                        </mark>
+                        <br/>
+                        (Response successful)
+                    </p>
+                    <!--<p>-->
+                        <!--<mark>{"success":false,"errors":["318"]}-->
+                        <!--</mark>-->
+                    <!--</p>-->
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm">
+            <h3>Update current account profile</h3>
+
+            <p class="text-info">Use the API for update the current account fullName, email and phoneNumber</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>
+                        Request URI:
+                        <br/>
+                        [APP Mobile] <code>/api/app/update_profile</code> <span class="label label-warning">POST</span>
+                        <span class="label label-success">REST</span>
+                        <br/>
+                        [Web SSO] <code>/api/web/update_profile</code> <span class="label label-warning">POST</span>
+                        <span class="label label-success">REST</span>
+                    </p>
+
+                    <p>
+                        Content-Type:
+                        <mark>application/json</mark>
+                    </p>
+                    <div>
+                        Request Parameters:
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Param-Key</th>
+                                <th>Param-Value</th>
+                                <th>Remark</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>fullName</td>
+                                <td>{fullName}</td>
+                                <td>Account fullName, empty value will ignore</td>
+                            </tr>
+                            <tr>
+                                <td>email</td>
+                                <td>{email}</td>
+                                <td>Account email, empty value will ignore</td>
+                            </tr>
+                            <tr>
+                                <td>phoneNumber</td>
+                                <td>{phoneNumber}</td>
+                                <td>Account phoneNumber, empty value will ignore, unique</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        Parameter DEMO:
+                        <p>
+                            <code>{"fullName":"张小明","email":"ming@demo.com","phoneNumber":"18965475215"}</code>
+                        </p>
+                    </div>
+                    <br/>
+                    <strong>Response:</strong>
+
+                    <p>
+                        <mark>{"success":true,"errors":[]}</mark>
+                        (Reset password successful)
+                    </p>
+                    <p>
+                        <mark>{"success":false,"errors":["303"]}
+                        </mark>
+                        (Reset password has errors)
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <hr/>
+        <p class="text-muted text-center">&copy; 2016 IDsManager.com</p>
+    </div>
+</div>
+</body>
+</html>

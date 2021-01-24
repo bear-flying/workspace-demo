@@ -1,0 +1,32 @@
+
+
+
+九州云腾公司 模板项目(Template Project); 是所有新项目的参考.
+
+项目使用MAVEN管理. 遵循TDD与DDD思想设计.
+
+模板项目中已经添加了公司常用的库及源代码.
+包括: OAuth, Security, commons tool, 主要包结构, MVC配置等
+
+
+在运用到具体项目时需要作如下修改:
+1. 将项目中的所有 project_name 修改为真实的项目名(包括package name, web.xml, pom.xml)
+2.将pom.xml中的 JZYTTemplate 修改为项目名
+   修改项目的版本号: pom.xml中<version> 与 JzytConstants.java中
+3.配置项目的数据库(project_name.properties)与测试数据库(test.properties)
+4.添加或删除需要的maven dependency
+
+修改好以后先提交并PUSH到代码库, 然后重新check-out
+项目修改好后启动Tomcat并访问, 先访问 /public/initial_user 初始化账号,默认账号/密码: JZYT/JZYT@JZYT
+(若需要修改默认查看DefaultUserInitializer.java)
+
+
+开发使用的工具下载地址
+https://ids.idsmanager.com:843/development/tools/
+
+
+2016-01-22    ShengZhao Li
+2016-09-08    Shengzhao Li     更新内容
+2017-01-04    Shengzhao Li      添加版本号设置, 启动时的配置与初始化
+
+

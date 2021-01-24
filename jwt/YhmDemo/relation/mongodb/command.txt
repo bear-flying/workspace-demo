@@ -1,0 +1,13 @@
+
+
+
+还原数据库
+mongorestore -u ids -p ids -d IDP2_1 --drop home/ubuntu/java/backup/IDP2_1/
+
+
+更新数据库
+ db.OauthClientDetails.update({"authorizedGrantTypes":"password"},{$set:{"authorizedGrantTypes":"password,refresh_token"}},false,true)
+ V-1.0.03
+ 为mobile获取的token里面添加  refresh_token，预计解决token过期app闪退的问题
+
+

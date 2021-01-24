@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource
+		username='stumgr'
+		password='stumgr'
+		url='jdbc:oracle:thin@172.37.15.35:1521:ORCL'
+		driverClassName='oracle.jdbc.driver.OracleDriver'
+		auth='Container'
+		name='jdbc/stumgr'
+		type='javax.sql.DataSource'
+		maxIdle='4'
+		maxActive='8'
+		maxWait='3000'
+	/>
+</Context>

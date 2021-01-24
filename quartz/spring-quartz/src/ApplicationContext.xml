@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+       	 http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<context:component-scan base-package="com.dao"></context:component-scan>
+	<context:component-scan base-package="com.service"></context:component-scan>
+
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/qqq?characterEncoding=UTF-8" />
+		<property name="username" value="root" />
+		<property name="password" value="tiger" />
+	</bean>
+
+	<!-- 配置SessionFactory -->
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="mappingResources">
+			<list>
+				<value>
+					com/entity/Picture.hbm.xml
+				</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"> 
+		</bean> <bean id="demo" class="org.springframework.cache.ehcache.EhCacheFactoryBean"> 
+		<property name="cacheManager" ref="cacheManager" /> <property name="cacheName"> 
+		<value>demo</value> </property> </bean> -->
+
+
+	<!-- 配置spring的hibernatetemplate -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="mySessionFactory" />
+		<property name="cacheQueries">
+			<value>true</value>
+		</property>
+	</bean>
+
+
+	<!-- 配置Hibernate事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="mySessionFactory"></property>
+	</bean>
+
+	<!-- 配置事物传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 配置aop管理事物 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.service..*.*(..))"
+			id="cutServiceMethod" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="cutServiceMethod" />
+	</aop:config>
+
+	<!-- Spring定时器 -->
+	<bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref bean="scheduledTask"></ref>
+			</list>
+		</property>
+	</bean>
+	<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property value="5000" name="delay"></property>
+		<property value="10000" name="period"></property>
+		<property name="timerTask" ref="TaskTimerDemo"></property>
+	</bean>
+
+	<bean id="TaskTimerDemo" class="com.util.TaskTimerDemo">
+	</bean>
+</beans>
+         
+         
+         
+         

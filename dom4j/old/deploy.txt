@@ -1,0 +1,18 @@
+﻿倒库前的配置
+
+一：需要修改配置文件：datamover-map-config.xml
+1，修改JDBC.ConnectionURL的value值-----连接数据库的URL。
+2，修改JDBC.Username的value值------访问数据库的用户名。
+3，修改JDBC.Password的value值------访问数据库的密码。
+
+
+二：需要修改配置文件：config.xml
+1，在<AttDir>中配置路径：存储附件的根目录，后面会自动加上httpfile文件夹。
+2，在<OutputDir>中配置路径：xml本地输出的路径（生成xml的存放位置），后面会自动加上cqcb或cqcbmuli文件夹。
+3，在<BackupDir>中配置路径：xml同名标识文件本地输出路径。
+4，在<SiteId>中修改站点ID。
+5，在<ArticleType>中配置0和1，分别代表导出文章稿件和组图稿件的xml文件。
+6，在<HttpAddr>中配置网站的主域名地址。
+
+注：配置文件在conf文件夹下，程序的启动脚本在run文件夹下。
+    程序运行生成的日志在/run/logs文件夹下。

@@ -1,0 +1,75 @@
+
+
+升级 MongoDB 到 3.4.10 后的 常用命令
+
+
+-- 启动MongoDB命令
+mongod -dbpath ..\data -auth --port 27318
+(或参考 mongodb-start.sh 与 mongodb.conf )
+
+
+
+--登录
+mongo 127.0.0.1:27318  (或具体的IP,  端口固定为 27318)
+
+
+--切换数据库
+use IDP2
+
+
+--添加ROOT用户 idsmanager/IDsManager
+
+use admin
+
+db.createUser({
+    user: 'idsmanager',
+    pwd: 'IDsManager',
+    roles: [{ role: 'root', db: 'admin' }]
+  });
+
+
+-- ROOT登录
+use admin
+
+db.auth("idsmanager","IDsManager");
+
+
+-- 创建数据库 并添加用户 ids/ids
+use IDP2
+
+db.createUser({
+    user: 'ids',
+    pwd: 'ids',
+    roles: [{ role: 'dbOwner', db: 'IDP2' }]
+  });
+
+-- 登录数据库
+use IDP2
+
+db.auth("ids","ids");
+
+
+-- 查看所有表 collections
+show collections
+
+-- 查看所有用户
+show users
+
+
+
+-- 备份数据库
+mongodump -h 127.0.0.1:27318 -u ids -p ids -d IDP2 -o /root/backup
+
+
+-- 还原数据库
+mongorestore -h 127.0.0.1:27318 -u ids -p ids -d IDP2 --drop /root/backup/IDP2/
+
+
+
+
+-------------------------------
+参考资料
+
+http://www.cnblogs.com/liujitao79/p/6877082.html
+
+https://yq.aliyun.com/articles/50887

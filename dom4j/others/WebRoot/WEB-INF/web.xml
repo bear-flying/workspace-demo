@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 上下文 参数  application | ServletContext -->
+  <context-param>
+  	<param-name>uu</param-name>
+  	<param-value>春哥</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>uu2</param-name>
+  	<param-value>曾哥</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>PlayServletConfig</servlet-name>
+    <servlet-class>com.javasky.PlayServletConfig</servlet-class>
+    <!-- ServetConfig -->
+    <init-param><!--初始化参数 -->
+    	<param-name>file</param-name><!--随便起名 -->
+    	<param-value>/WEB-INF/xxx.txt</param-value><!--文件的位置-->
+    </init-param>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PlayXmlServlet</servlet-name>
+    <servlet-class>com.javasky.PlayXmlServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PlayWriteXml</servlet-name>
+    <servlet-class>com.javasky.PlayWriteXml</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EmpControl</servlet-name>
+    <servlet-class>com.javasky.EmpControl</servlet-class>
+  </servlet>
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>PlayServletConfig</servlet-name>
+    <url-pattern>/servlet/PlayServletConfig</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PlayXmlServlet</servlet-name>
+    <url-pattern>/servlet/PlayXmlServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PlayWriteXml</servlet-name>
+    <url-pattern>/servlet/PlayWriteXml</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmpControl</servlet-name>
+    <url-pattern>/servlet/EmpControl</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<filter-name>encodingFilter</filter-name>
+  	<filter-class>com.javasky.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+  	<dispatcher>INCLUDE</dispatcher>
+  	<dispatcher>ERROR</dispatcher>
+  </filter-mapping>
+  
+</web-app>

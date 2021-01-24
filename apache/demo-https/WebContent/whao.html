@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>
+使用iframe扒取页面的部分内容   比如报表等
+以iframe引进来  再把iframe隐藏掉  再把读出来的东西inner到你的页面上
+相当于跨页面调用元素
+</title>
+
+<script type="text/javascript">
+	<!-- jsp页面还有一个dom节点 -->
+	function loadsb(){
+
+		alert(document.getElementById('sb').contentWindow.document.getElementById('p').innerHTML);
+		
+		var p = document.getElementById('sb').contentWindow.document.getElementById('p');
+		alert(p.innerHTML);
+		 
+		//var p = document.getElementById('sb2').contentWindow.document.getElementById('p');
+		//alert(p.innerHTML);
+		
+	}
+
+</script>
+
+</head>
+<!-- 
+	body中的内容加载完成以后  执行onload 
+
+	如果src中写URL地址  相当于跨域访问  不行  但是可以通过httpclent把页面下载到页面上  
+-->
+<body onload="loadsb()">
+	
+	<!-- 相对路径获取页面  -->
+	<iframe id="sb" src="abc.html" width="100%" height="900px;">
+	
+	</iframe>
+	
+	<!-- 
+	<iframe id="sb" src="http://127.0.0.1:8080/Ftp/abc.html" width="100%" height="900px;">
+	
+	</iframe>
+	
+	<iframe id="sb2" src="http://127.0.0.1:8080/Ftp/abc.jsp" width="100%" height="900px;">
+	
+	</iframe>
+	 -->
+</body>
+</html>

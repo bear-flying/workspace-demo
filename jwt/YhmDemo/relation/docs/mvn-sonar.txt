@@ -1,0 +1,8 @@
+
+
+
+
+运行Maven 命令 生成 Sonar 报告
+mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=9ef74c359085ddbd1233752769a5425199d1d58e
+
+

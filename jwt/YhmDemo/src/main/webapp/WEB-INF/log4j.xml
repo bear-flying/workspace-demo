@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration>
+
+
+    <!--console-->
+    <appender name="Console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.EnhancedPatternLayout">
+            <param name="ConversionPattern" value="%d %p [%c] - %m%n"/>
+        </layout>
+    </appender>
+
+
+    <!--
+        WARN appender
+         日志内容压缩.每天一个日志文件
+    -->
+    <appender name="warnDailyAppender" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="threshold" value="WARN"/>
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="${catalina.home}/logs/JZYT-WARN.log.%d{yyyy-MM-dd}.gz"/>
+        </rollingPolicy>
+        <layout class="org.apache.log4j.EnhancedPatternLayout">
+            <param name="ConversionPattern" value="%d %p [%c] - %m%n"/>
+        </layout>
+    </appender>
+
+
+    <!-- WARN logger -->
+    <logger name="com.idsmanager">
+        <level value="WARN"/>
+        <appender-ref ref="warnDailyAppender"/>
+    </logger>
+
+
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="Console"/>
+    </root>
+
+
+</log4j:configuration>

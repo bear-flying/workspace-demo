@@ -1,0 +1,30 @@
+
+
+KSO API ErrorCode(错误码)
+
+301            - 用户名(username)已经存在
+302            - 密码长度必须 >= 8, 且包括大写字母,小写字母,数字与特殊符号
+303            - 电话(phone number)已经存在
+
+304            - openid为空
+305            - 不存在的openid
+306            - 不存在的 电话(phone number)
+
+307            - 密码为空
+308            - 两次密码不相同
+309            - 用户名(username)为空
+
+310            - 用户名(username)长度必须 >= 6
+311           - clientId 为空
+312           - clientId 不存在
+
+313           - 全名(fullName) 为空
+314           - 角色名(roleName) 为空
+315           - 电话(phone number) 为空
+
+316           - 旧密码为空
+317           - 旧密码错误
+
+318           - 该AppKey无权限获取应用列表,必须是主应用才允许
+319           - 不存在的Member(用户) 根据openid
+

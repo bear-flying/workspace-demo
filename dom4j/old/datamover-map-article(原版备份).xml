@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- 数据库的迁移 -->
+<!-- ALTER TABLE `phome_ecms_news`  ADD COLUMN `doxml` TINYINT(1) NOT NULL DEFAULT '0' AFTER `smalltext`; 
+	 `phome_ecms_news_doc`
+-->
+<sqlMap namespace="article">
+	<typeAlias alias="art" type="com.founder.datamover.po.Article"/>
+	
+	<select id="cqcb" parameterClass="java.util.HashMap" resultClass="art">
+		<![CDATA[
+		select a.id as docId,2 as TargetLib,b.classid as targetNodeId,a.keyboard as keyword,
+a.username as loginName,a.writer as author,a.istop,FROM_UNIXTIME(a.truetime,'%Y-%m-%d %h:%i:%s') as pubTime,a.titlefont,if(a.firsttitle=61,62,63) as attr,a.title,a.titlepic as SmallTitlepic,
+if(a.havehtml=0,3,1) as publishstate,a.ispic as hasTitlePic,a.titlepic as picLinks,a.ftitle as subTitle,a.smalltext as artAbstract,b.newstext as content
+from phome_ecms_news a right join phome_ecms_news_data_1 b
+on a.id=b.id where a.id is not null
+limit #index#,#count#
+]]>
+	</select>
+	
+
+	
+	<select id="getCategoryName" parameterClass="java.lang.Integer" resultClass="java.lang.String">
+		<![CDATA[select classname from phome_enewsclass where classid=#id#]]>
+	</select>
+	
+	<select id="getCategoryParent" parameterClass="java.lang.Integer" resultClass="java.lang.Integer">
+		<![CDATA[select bclassid from phome_enewsclass where classid=#id#]]>
+	</select>
+	
+	<update id="doxml" parameterClass="java.lang.Integer">
+	    <![CDATA[update phome_ecms_news set doxml=1 where id=#id#]]>   
+	</update><!-- dokey -->
+</sqlMap>
+
+
+<!-- 
+	union all
+select a.id as docId,2 as TargetLib,b.classid as targetNodeId,a.keyboard as keyword,
+a.username as loginName,a.writer as author,a.istop,FROM_UNIXTIME(a.truetime,'%Y-%m-%d %h:%i:%s') as pubTime,a.titlefont,if(a.firsttitle=1,62,63) as attr,a.title,a.titlepic as SmallTitlepic,
+if(a.havehtml=0,3,1) as publishstate,a.ispic as hasTitlePic,a.titlepic as picLinks,a.ftitle as subTitle,a.smalltext as artAbstract,b.newstext as content
+from phome_ecms_news_doc a right join phome_ecms_news_doc_data b
+on a.id=b.id where a.id is not null
+ -->

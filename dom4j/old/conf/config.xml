@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datamover>
+
+	<!-- xml本地输出   存储附件的根目录 -->
+	<AttDir><![CDATA[D:\exportXml]]></AttDir>
+	<!-- 它和下面的sqlId拼接后  作为xml本地输出路径-->
+	<OutputDir><![CDATA[D:\exportXml]]></OutputDir>
+	<!-- xml同名文件本地输出路径 -->
+	<BackupDir><![CDATA[D:\exportXml\backup]]></BackupDir>
+	
+	<!-- 目标站点SiteId -->
+	<SiteId>2</SiteId>
+	<!-- 设置稿件类型 0代表文章稿件 1代表组图稿件 -->
+	<ArticleType>0</ArticleType>
+	<!-- 设置网站地址 如：http://www.shaoyangnews.net/ -->
+	<HttpAddr>http://www.shaoyangnews.net/</HttpAddr>
+	
+	<!-- Access数据库的ODBC数据源名称 -->
+	<AccessDsName><![CDATA[renda]]></AccessDsName>
+	<AccessTargetNode><![CDATA[代表网~人大简报]]></AccessTargetNode>
+	
+	<SourceConfig>
+		<Source sqlId="cqcb" targetNode="" />
+	</SourceConfig>
+</datamover>
