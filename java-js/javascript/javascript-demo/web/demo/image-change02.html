@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>image-change02</title>
+    <style type='text/css'>
+        img{position:absolute;left:10px;top:10px}
+    </style>
+</head>
+<body>
+<img src='image/841401_1324570247T5Pl.jpg' width=100 height=100 id='a'/>
+</body>
+<script>
+    //window对象：
+    //setInterval('反复执行的代码',时间)
+    //setTimeout('执行一次的代码',时间)
+    var i = 0;
+    window.setInterval('f1()',1000);
+    function f1() {
+        document.getElementById('a').style.left=Math.floor(Math.random()*800)+"px";
+        document.getElementById('a').style.top=Math.floor(Math.random()*600)+"px";
+    }
+</script>
+</html>

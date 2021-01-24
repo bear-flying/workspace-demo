@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> mouse-event04 </title>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style type='text/css'>
+  body{height:600px;}
+  div{height:300px;border:1px solid red;}
+  </style>
+ </head>
+
+ <body >
+ <div id='a' onmousemove='f1()'></div>//鼠标移动事件
+ </body>
+</html>
+<script>
+    //event 属性clientX clientY  获取鼠标的横纵坐标
+    //srcElement  找对象的另外一种方法  触发事件的对象
+	function f1() {
+		window.status=event.clientX+','+event.clientY;
+		document.getElementById('a').innerHTML=event.clientX+','+event.clientY;
+	}
+</script>

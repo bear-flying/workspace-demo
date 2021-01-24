@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>表单验证04</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>表单练习 </title>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		
+ </head>
+
+ <body>
+	<h1>form对象：客户端校验</h1>
+	<form id="form1" action="www.baidu.com" method="post" onsubmit="return checkDate()">
+        <table width="800" border="1">
+          <tr>
+			<td align="right">用户名：</td>
+		  <td><input type="text"  name="userName" id="userName" onkeyup="checkDate()"/>
+			  <span id="sUname">（只能使用字母和数字，5-10位）</span></td>
+		  </tr>
+          <tr>
+			<td align="right">密码：</td>
+		    <td>
+			  <input type="password" name="userPswd" id="userPswd" onkeyup="checkDate()" />
+			  <span id="sPwd">（只能使用字母和数字和以下字符：!@#$%^&*_，至少6位,最多15位)</span>
+			</td>
+		  </tr>
+          <tr>
+			<td align="right">确认密码：</td>
+			<td><input type="password" name="userPswd1" id="userPswd1" onkeyup="checkDate()" />
+			    <span id="sPwd1">和密码一致</span>
+			</td>
+	      </tr>
+          <tr>
+			<td align="right">年龄：</td>
+			<td><input type="text" name="age" id="age" onkeyup="checkDate()" />
+			    <span id="sAge">（18岁以上）</span></td>
+		  </tr>
+          <tr>
+			<td align="right">性别：</td>
+			<td><input type="radio" name="sex" value="男" onclick="checkDate()"  />男
+				<input type="radio" name="sex" value="女" onclick="checkDate()"  />女
+				<span id="sSex">必选一项</span>
+			</td>
+		  </tr>
+          <tr>
+			<td align="right">学历：</td>
+            <td>
+				<select name="edu" onclick="checkDate()">
+					<option value="" >请选择</option>
+					<option value="1" >小学</option>
+					<option value="2" >中学</option>
+					<option value="3" >高中</option>
+					<option value="4" >本科</option>
+				</select>
+				<span id="sEdu">（必须选择一项）</span>
+            </td>
+		  </tr>
+          <tr>
+            <td align="right">爱好：</td>
+            <td>
+				<input type="checkbox" name="like" value="1" onclick="checkDate()"/>篮球 
+				<input type="checkbox" name="like" value="2" onclick="checkDate()"/>足球 
+				<input type="checkbox" name="like" value="3" onclick="checkDate()"/>排球 
+				<input type="checkbox" name="like" value="4" onclick="checkDate()"/>地球 
+				<span id="sLike">（至少2项）</span>
+            </td>
+		  </tr>
+          <tr>
+			<td align="right">自我介绍：</td>
+			<td><textarea id="txtarea" cols="60" rows="5" onkeyup="checkDate()"></textarea>
+			<span id="sShow">（最多50个字）</span>
+			</td>
+		  </tr>
+          <tr><td></td>
+			<td><input type="submit" name="btn1" value="提交"/></td>
+          </tr>
+        </table>
+	</form>
+ </body>
+</html>
+<script type="text/javascript">
+	function checkDate(){
+		//（只能使用字母和数字，5-10位）
+		var reg = /^[a-zA-Z0-9]{5,10}$/gi
+		var userName = document.getElementById('userName').value;
+		var sUname = document.getElementById('sUname');
+		if(!reg.test(userName)){
+			sUname.innerText = "（只能使用字母和数字，5-10位）";
+			sUname.style.color = "red";
+			return false;
+		}else{
+			sUname.innerText = "";
+		}
+
+		//（只能使用字母和数字和以下字符：!@#$%^&*_，至少6位,最多15位)
+		var reg = /^[\w：!@#$%^&*]{6,15}$/gi
+		var userPswd = document.getElementById('userPswd').value;
+		var sPwd = document.getElementById('sPwd');
+		if(!reg.test(userPswd)){
+			sPwd.innerText = "（只能使用字母和数字和以下字符：!@#$%^&*_，至少6位,最多15位)";
+			sPwd.style.color = "red";
+			return false;
+		}else{
+			sPwd.innerText = "";
+		}
+		
+		//和密码一致
+		var userPswd1 = document.getElementById('userPswd1').value;
+		var sPwd1 = document.getElementById('sPwd1');
+		if(userPswd != userPswd1){
+			sPwd1.innerText = "和密码一致";
+			sPwd1.style.color = "red";
+			return false;
+		}else{
+			sPwd1.innerText = "";
+		}
+
+		//（18岁以上）
+		var reg = /^(1[89]|[2-9]\d)$/gi
+		var age = document.getElementById('age').value;
+		var sAge = document.getElementById('sAge');
+		if(!reg.test(age)){
+			sAge.innerText = "（18岁以上）";
+			sAge.style.color = "red";
+			return false;
+		}else{
+			sAge.innerText = "";
+		}
+
+		//必选一项
+		var sex = document.getElementsByName('sex');
+		var sSex = document.getElementById('sSex');
+		if(!sex[0].checked && !sex[1].checked){
+			sSex.innerText = "必选一项";
+			sSex.style.color = "red";
+			return false;
+		}else{
+			sSex.innerText = "";
+		}
+		//（必须选择一项）
+		var edu = document.getElementsByName('edu');
+		var sEdu = document.getElementById('sEdu');
+		if(edu[0].value == ""){
+			sEdu.innerText = "必选一项";
+			sEdu.style.color = "red";
+			return false;
+		}else{
+			sEdu.innerText = "";
+		}
+
+		//（至少2项）
+		var like = document.getElementsByName('like');
+		var sLike = document.getElementById('sLike');
+		var count = 0;
+		for(var i = 0; i<like.length ; i++){
+			 if(like[i].checked == true){
+				count++;
+			 }
+		}
+
+		if(count < 2){
+			sLike.innerText = "（至少2项）";
+			sLike.style.color = "red";
+			return false;
+		}else{
+			sLike.innerText = "";
+		}
+
+		//（最多50个字）
+		var txtarea = document.getElementById('txtarea');
+		var sShow = document.getElementById('sShow');
+		var num = 50 ;
+		if(txtarea.value.length<=num){
+			sShow.innerText = "剩余"+num+"个字";
+		}
+
+
+	}
+
+</script>

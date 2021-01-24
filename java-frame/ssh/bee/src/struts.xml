@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+  	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ui.theme" value="simple"/>
+    <constant name="struts.custom.i18n.resources" value="bee" />
+   
+	<package name="wp-base" extends="struts-default" namespace="/">
+		<!-- 解决多个action 配置拦截器的问题   -->
+		<interceptors>
+			<interceptor name="interceptorone" class="com.bee.inteceptor.InteceptorOne"></interceptor>
+			<interceptor-stack name="mystack">
+				<interceptor-ref name="interceptorone"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>	
+	</package>
+	
+	<include file="struts-user.xml"></include>
+	<include file="struts-bee.xml"></include>
+</struts>    
+

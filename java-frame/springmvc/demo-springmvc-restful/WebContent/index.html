@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+
+<script type="text/javascript">
+
+var result = {
+		name:"xiao",
+		sex : {
+			man:1,
+			womam:"female"
+		}
+};
+function son(){
+	var str_json = JSON.stringify(json);
+	alert(str_json);
+}
+
+var json1 = {"articleCount": "1"}
+
+var json2 = {id: 1,name:'张三',sex:'男'}
+
+var json = {
+	    result: {
+	        datas: {
+	            rcode: "200",
+	            details: {
+	                record: [
+	                    {
+	                        SY_INFOTYPE: 1,
+	                        IR_GROUPFLAG: 0,
+	                        IR_URLTIME: "2015-12-11 16:18:07",
+	                        IR_URLTITLE: "市交通银行增派驻村扶贫力量",
+	                        IR_ABSTRACT: "12月10日,交通银行怀化分行增加队员易凯到沅陵北溶乡碣滩村,加强扶贫攻坚力量",
+	                        IR_CONTENT: "内容1",
+	                        IR_URLNAME: "http://www.ylxw.net/Info.aspx?ModelId=1&Id=80029",
+	                        IR_SITENAME: "沅陵新闻网",
+	                        RID: "2677354",
+	                        IR_AUTHORS: "朱建波",
+	                        IR_CHANNEL: "新闻中心_要闻快报"
+	                    },
+	                    {
+	                        SY_INFOTYPE: 2,
+	                        IR_GROUPFLAG: 0,
+	                        IR_URLTIME: "2015-12-12 17:31:00",
+	                        IR_URLTITLE: "【12-12  花粉漫谈】入了两部手机",
+	                        IR_ABSTRACT: "A1老妈的, 5x老婆的,而我仍然荣耀+",
+	                        IR_CONTENT: "内容2",
+	                        IR_URLNAME: "http://tieba.baidu.com/p/4210238527",
+	                        IR_SITENAME: "百度贴吧",
+	                        RID: "2978829",
+	                        IR_AUTHORS: "邓超尘",
+	                        IR_CHANNEL: "华为吧"
+	                    }
+	                ]
+	            },
+	            rstate: "success",
+	            databasic: {
+	                allpages: 161,
+	                pageno: 1,
+	                pagesize: 2,
+	                allcount: 322
+	            }
+	        }
+	    }
+	};
+
+
+function add(){
+	alert(JSON.stringify(json));
+	$.ajax({
+			type:"POST",
+			url:"http://127.0.0.1:8080/MedicalNewspaper/article/article",
+			dataType: "json",
+			contentType : "application/json;charset=UTF-8",
+			data:JSON.stringify(json),
+			//data:{"code":JSON.stringify(json),"columnId":1},
+			async: false,//同步
+			success: function(datas) {
+				alert(JSON.stringify(datas));
+			}
+	});
+	
+}
+
+function find(){
+	
+	$.ajax({
+			type:"GET",
+			url:"http://127.0.0.1:8088/MedicalNewspaper/article/art/2",
+			dataType: "json",
+			contentType:"application/json",
+			/*  data:{"jsonStr":JSON.stringify(json1)},*/
+			/*  data:JSON.stringify(json),*/
+			success: function(datas) {
+				alert(JSON.stringify(datas.message));
+			}
+	});
+	
+}
+
+function say(){
+	
+	$.ajax({
+			type:"GET",
+			url:"http://127.0.0.1:8088/MedicalNewspaper/article/say/abc",
+			dataType: "json",
+			contentType:"application/json",
+			/*  data:{"jsonStr":JSON.stringify(json1)},*/
+			/*  data:JSON.stringify(json),*/
+			success: function(datas) {
+				alert(eval(datas));
+				alert(JSON.stringify(datas.message));
+			}
+	});
+	
+}
+
+
+function hello(){
+	
+	$.ajax({
+			type:"GET",
+			url:"http://127.0.0.1:8088/MedicalNewspaper/article/hello",
+			dataType: "json",
+			contentType:"application/json",
+			/*  data:{"jsonStr":JSON.stringify(json1)},*/
+			/*  data:JSON.stringify(json),*/
+			success: function(datas) {
+				alert(datas.message);
+			}
+	});
+	
+}
+</script>
+
+</head>
+
+
+
+<body>
+<input type="button" value="hello" onClick="javascript:hello();"/> 
+<input type="button" value="say" onClick="javascript:say();"/> 
+<input type="button" value="find" onClick="javascript:find();"/> 
+<input type="button" value="add" onClick="javascript:add();"/> 
+<input type="button" value="jsonStringify" onClick="javascript:son();"/> 
+</body>
+</html>

@@ -1,0 +1,11 @@
+搭建struts2的步骤：
+	a:拷贝struts2所需的jar文件到lib文件夹下
+	b:编写struts2的核心配置文件（struts.xml文件）
+	  1，struts.xml（注意：在程序编译后，此文件必须在class根目录下）
+		为什么要放在根目录下(web工程的src下)？：
+		1），我们可以使用ClassLoader类的
+		   getResourceAsStream("classpath/xxx");
+		2），web工程的src下的东西会直接编译到class下，
+	  2，构建struts核心文件的内部结构
+	c:在web.xml文件中配置struts2的核心控制器
+		

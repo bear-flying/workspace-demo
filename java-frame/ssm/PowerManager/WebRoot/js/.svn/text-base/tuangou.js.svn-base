@@ -1,0 +1,33 @@
+function show(element) {
+    if(element.parentNode.getElementsByTagName("DIV")[1]!=null)
+      element.parentNode.getElementsByTagName("DIV")[1].className = "show";
+  
+      
+}
+
+function hidden(element) {
+  if(element.parentNode.getElementsByTagName("DIV")[1]!=null)
+    element.parentNode.getElementsByTagName("DIV")[1].className = "hidden";
+    //element.getElementsByTagName("DIV")[1].className = "hidden";
+    //document.getElementById("123").style.display = "";
+}
+
+function hidden1(element) {
+    
+    element.getElementsByTagName("DIV")[1].className = "hidden";
+    
+}
+function ShowA1(element)
+{
+     if(element.parentNode.getElementsByTagName("DIV")[0]!=null)
+    {
+       element.parentNode.getElementsByTagName("DIV")[0].className="show123";
+    }
+}
+function  ShowA2(element)
+{
+   if(element.parentNode.getElementsByTagName("DIV")[0]!=null)
+    {
+       element.parentNode.getElementsByTagName("DIV")[0].className="show234";
+    }
+}

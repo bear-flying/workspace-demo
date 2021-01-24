@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="user" extends="struts-default" >
+		<action name="user*" class="com.baidu.user.action.UserAction" method="{1}">
+			<result name="tree">tree.jsp</result>
+			<result name="usertree">/WEB-INF/user/usertree.jsp</result>
+			<result name="index">/WEB-INF/index.jsp</result>
+			<result name="list">/WEB-INF/user/list.jsp</result>
+			<result name="add">/WEB-INF/user/add.jsp</result>
+			<result name="edit">/WEB-INF/user/modify.jsp</result>
+		</action>
+	</package>
+</struts>

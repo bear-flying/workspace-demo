@@ -1,0 +1,11 @@
+APPLICATION_ID: start.servicecomb.io
+service_description:
+  name: gateway #网关（当前微服务）的微服务名称叫做gateway
+  version: 0.0.1
+servicecomb:
+  tracing: #这个代表日志收集的一个工作 当前没有用到 可以直接去掉
+    collector:
+      address: http://127.0.0.1:9411
+  service:
+    registry:
+      address: http://127.0.0.1:30100

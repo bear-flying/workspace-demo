@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>表单验证05</title>
+	<meta charset="UTF-8">
+	<meta name="Generator" content="EditPlus">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+</head>
+
+<body>
+<form action="">
+	<table>
+		<tr>
+			<td align="right">账号：</td>
+			<td><input type="text" name="username" id="username" /></td>
+			<td>*</td>
+		</tr>
+		<tr>
+			<td align="right">密码：</td>
+			<td><input type="password" name="password" id="password" /></td>
+			<td>*</td>
+		</tr>
+		<tr>
+			<td align="right">确认密码：</td>
+			<td><input type="password" name="repassword" id="repassword" /></td>
+			<td>*</td>
+		</tr>
+		<tr>
+			<td align="right">性别：</td>
+			<td>
+				<input type="radio" name="sex" id="sex1" />男
+				<input type="radio" name="sex" id="sex2" />女
+			</td>
+		</tr>
+		<tr>
+			<td align="right">出生年月：</td>
+			<td>
+				<select name="year" id="year">
+					<option value="1993">1993</option>
+					<option value="1992">1992</option>
+					<option value="1991">1991</option>
+					<option value="1990">1990</option>
+					<option value="1989">1989</option>
+				</select>
+				<select name="mouth" id="mouth">
+					<option value="01">01</option>
+					<option value="02">02</option>
+					<option value="03">03</option>
+					<option value="04">04</option>
+					<option value="05">05</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td align="right">邮箱：</td>
+			<td><input type="text" name="email" id="email" /></td>
+			<td>*</td>
+		</tr>
+		<tr>
+
+			<td colspan="3"><input type="submit" name="sub" id="sub" onclick="subm()"/></td>
+
+		</tr>
+	</table>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+    function subm(){
+        //账号正则：字母开头，只能是字母和数字，区分大小写，最小长度为3，最大长度为20
+        var nameReg = /^[a-zA-Z][A-Za-z0-9]{2,20}$/
+        var username = document.getElementById('username').value;
+        if(username != null && username != ""){
+            if(nameReg.test(username)==false){
+                alert("账号格式不正确！");
+            }
+        }else{
+            alert("账号不能为空！");
+        }
+
+        //密码正则：字母开头，只能是字母、数字，区分大小写，最小长度为6，最大长度为20
+        var passwordReg = /^[a-zA-Z][A-Za-z0-9]{5,20}$/
+        var password = document.getElementById('password').value;
+        if(password != null && password != ""){
+            if(passwordReg.test(password)==false){
+                alert("密码格式不正确！");
+            }
+        }else{
+            alert("密码不能为空！");
+        }
+
+        var repasswordReg = /^[a-zA-Z][A-Za-z0-9]{5,20}$/
+        var repassword = document.getElementById('repassword').value;
+        if(repassword != null && repassword != ""){
+            if(repasswordReg.test(repassword)==false){
+                alert("密码格式不正确！");
+            }else{
+                if( repassword != password ){
+                    alert("两次密码不一致！");
+                }
+            }
+        }else{
+            alert("密码不能为空！");
+        }
+
+        //性别
+        var sex1 = document.getElementById('sex1');
+        var sex2 = document.getElementById('sex2');
+        if(sex1.checked == false && sex2.checked == false){
+            alert("性别不能为空！");
+        }
+
+        //出生年月
+        var year = document.getElementById('year');
+        var mouth = document.getElementById('mouth');
+        if(year.checked == false && mouth.checked == false){
+            alert("出生年月不能为空！");
+        }
+
+        //邮箱正则：字母或数字开头，@前最少5个字符，以.com结尾
+        var emailReg = /^[A-Za-z0-9]{5,20}@\w+(\.)com$/
+        var email = document.getElementById('email').value;
+        if(email != null && email != ""){
+            if(emailReg.test(email)==false){
+                alert("邮箱格式不正确！");
+            }
+        }else{
+            alert("邮箱不能为空！");
+        }
+    }
+
+</script>

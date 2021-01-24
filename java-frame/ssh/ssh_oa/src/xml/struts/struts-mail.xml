@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="mail" extends="struts-default" >
+		<action name="mail*" class="com.baidu.mail.action.MailAction" method="{1}">
+			<result name="list">/WEB-INF/mail/list.jsp</result>
+			<result name="receivebox">/WEB-INF/mail/receivebox.jsp</result>
+			<result name="sendbox">/WEB-INF/mail/sendbox.jsp</result>
+			<result name="draftbox">/WEB-INF/mail/draftbox.jsp</result>
+			<result name="rubbishbox">/WEB-INF/mail/rubbishbox.jsp</result>
+			<result name="writebox">/WEB-INF/mail/writebox.jsp</result>
+			<result name="add">/WEB-INF/mail/add.jsp</result>
+			<result name="modify">/WEB-INF/mail/modify.jsp</result>
+			<result name="mailtree">/WEB-INF/mail/mailtree.jsp</result>
+		</action>
+	</package>
+</struts>

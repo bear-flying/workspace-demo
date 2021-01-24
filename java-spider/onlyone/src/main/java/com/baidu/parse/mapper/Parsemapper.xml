@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baidu.parse.dao.IParseDao" >
+  
+  <resultMap type="com.baidu.parse.pojo.App" id="AppMap">
+  	<id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="appname" property="appname" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="appicon" property="appicon" jdbcType="VARCHAR" />
+    <result column="apkurl" property="apkurl" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="filesize" property="filesize" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" />
+    <result column="developer" property="developer" jdbcType="VARCHAR" />
+    <result column="apptype" property="apptype" jdbcType="VARCHAR" />
+    <result column="downloadNums" property="downloadNums" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="codeurl" property="codeurl" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    
+    <collection property="commentList" ofType="com.baidu.parse.pojo.Comment">
+	    <id column="cid" property="id" jdbcType="VARCHAR" />
+	    <result column="commentUser" property="commentUser" jdbcType="VARCHAR" />
+	    <result column="commentDate" property="commentDate" />
+	    <result column="commentNum" property="commentNum" jdbcType="VARCHAR" />
+	    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    </collection>
+    
+    <collection property="picList" ofType="com.baidu.parse.pojo.Pic">
+    	<id column="pid" property="id" jdbcType="VARCHAR" />
+    	<result column="picurl" property="picurl" jdbcType="VARCHAR" />
+    	<result column="pdescription" property="description" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <insert id="addApp" parameterType="com.baidu.parse.pojo.App">
+  insert into t_app(id,appname,version,appicon,apkurl,description,filesize,
+  updatetime,developer,apptype,downloadNums,platform,price) values (#{id},
+  #{appname},#{version},#{appicon},#{apkurl},#{description},#{filesize},
+  #{updatetime},#{developer},#{apptype},#{downloadNums},#{platform},#{price}) 
+  </insert>
+
+  <select id="selectApps" resultMap="AppMap">
+  select a.*,p.*,c.* from t_app a,t_pic p,comment c
+  where a.id=p.app and a.id=c.appid
+  </select>
+  
+</mapper>

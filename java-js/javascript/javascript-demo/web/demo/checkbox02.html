@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选反选02</title>
+</head>
+<body>
+    <input type="checkbox" id="check1" onclick="docheck()">全选<br>
+    <input type="checkbox" name="rowcheck"><br>
+    <input type="checkbox" name="rowcheck"><br>
+    <input type="checkbox" name="rowcheck"><br>
+    <input type="checkbox" name="rowcheck"><br>
+    <input type="checkbox" name="rowcheck"><br>
+    <input type="button" id="check2" onclick="reversecheck()" value="反选">
+
+    <script>
+        function docheck(){
+            //var inputs = document.getElementsByTagName("rowcheck");
+            var inputs = document.getElementsByName("rowcheck");
+            var ischeck = document.getElementById("check1");
+            if (ischeck.checked == true){
+                for (var i=0; i<inputs.length; i++){
+                    inputs[i].checked = true;
+                }
+            }else{
+                for (var i=0; i<inputs.length; i++){
+                    inputs[i].checked = false;
+                }
+            }
+        }
+        
+        function reversecheck() {
+            var inputs = document.getElementsByName("rowcheck");
+            var ischeck = document.getElementById("check1");
+            var count = 0;
+            for (var i=0; i<inputs.length; i++){
+                if (inputs[i].checked){
+                    inputs[i].checked = false;
+                } else{
+                    inputs[i].checked = true;
+                    count ++;
+                }
+            }
+            if (count == inputs.length){
+                ischeck.checked = true;
+            } else {
+                ischeck.checked = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangyu.mapper.OrderMapper" >
+	
+  <resultMap id="SimpleOrder" type="com.jiangyu.pojo.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="datea" property="datea" jdbcType="VARCHAR" />  
+  </resultMap>
+  
+  <resultMap id="ResultOrder" type="com.jiangyu.pojo.Order" extends="SimpleOrder">
+  	<association property="times" javaType="com.jiangyu.pojo.Times" resultMap="com.jiangyu.mapper.TimesMapper.SimpleTimes">
+    </association>
+    <association property="address" javaType="com.jiangyu.pojo.Address" resultMap="com.jiangyu.mapper.AddressMapper.SimpleAddress">
+    </association>
+    <collection property="foods" ofType="com.jiangyu.pojo.Food" select="com.jiangyu.mapper.FoodMapper.getFoodByOrderid"
+    	column="id">
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, name, tel, datea, time_id, address_id
+  </sql>
+  
+  <select id="findAll" parameterType="map" resultMap="ResultOrder">
+   select o.*,t.id tid,t.name tname,a.id aid,a.name aname from d_order o,
+   d_time t,d_address a where o.time_id = t.id and o.address_id=a.id
+   order by o.id asc
+   limit #{pageIndex},#{pageSize}
+  </select>
+  
+  <select id="getCount" resultType="int">
+  select count(*) from d_order
+  </select>
+
+  <insert id="add" parameterType="ResultOrder">
+  	insert into d_order(name, tel, datea, time_id, address_id)
+  </insert>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.maomao.pojo.Cat" >
+		<id name="cid" length="3">
+			<generator class="native"/>
+		</id>
+		<property name="name" length="18"/>
+		<property name="sex" length="4"/>
+		<property name="hobby" length="30"/>
+		<property name="birthday" length="20">
+			<column name="birthday" sql-type="date"/>
+		</property>
+		<many-to-one class="com.maomao.pojo.KindOfCat" name="kindOfCat" 
+			column="kid" fetch="join" lazy="false"/>
+		<!-- 由于是这个表主动关联Kind表进行查询，所以只要这里配置fetch="join"就行了 -->
+		<!-- 必须设置 lazy="false" 因为查询这个标的时候fetch="join"
+		   联查另一个表的一个字段 是使用load方法查询的 -->
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baidu.user.dao.IUserDao" >
+  
+  
+  <select id="register" parameterType="com.baidu.user.pojo.User">
+    insert into t_user(id,loginName,password,nickName,phone,mail) 
+    values(#{id},#{loginName},#{password},#{nickName},#{phone},#{loginName})
+  </select>
+  
+  <select id="checkLoginname" parameterType="java.lang.String" resultType="com.baidu.user.pojo.User">
+  	select u.* from t_user u where u.loginName = #{loginName} 
+  </select>
+  
+  <select id="checkIsfirst" parameterType="java.lang.String" resultType="com.baidu.user.pojo.User">
+  	select u.* from t_user u where u.social_uid = #{social_uid} 
+  </select>
+  
+  <select id="finishOtherMsg" parameterType="com.baidu.user.pojo.User">
+    insert into t_user(id,nickName,phone,mail,realName,address,social_uid) 
+    values(#{id},#{nickName},#{phone},#{mail},#{realName},#{address},#{social_uid})
+  </select>
+  
+  <select id="getList" resultType="com.baidu.user.pojo.User">
+   select * from t_user
+  </select>
+  
+</mapper>

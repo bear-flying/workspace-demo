@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.baidu.entity.User" table="t_user">
+        <id name="id" type="int">
+            <column name="ID"/>
+            <generator class="native" />
+        </id>
+        <property name="name" type="string"/>
+        <property name="password" type="java.lang.String"/>
+        <property name="age"/>
+        <property name="errorcount"/>
+        <property name="errortime" type="timestamp"/>
+        <!--<set name="dept" table="t_user_dept" lazy="false">
+        	<key column="id"/>
+        	<many-to-many class="com.baidu.entity.Dept" column="did"/>
+        </set>
+    --></class>
+    <class name="com.baidu.entity.Dept" table="t_dept">
+        <id name="deptid" type="int">
+            <column name="deptid"/>
+            <generator class="native" />
+        </id>
+         <property name="dname" type="string"/>
+         <property name="content"/>
+        <set name="roles" table="t_dept_role" lazy="false">
+        	<key column="deptid"/>
+        	<many-to-many class="com.baidu.entity.Role" column="rid"/>
+        </set>
+        <set name="users" table="t_user_dept" lazy="false">
+        	<key column="did"/>
+        	<many-to-many class="com.baidu.entity.User" column="id"/>
+        </set>
+    </class>
+    <class name="com.baidu.entity.Role" table="t_role">
+        <id name="rid" type="int">
+            <column name="rid"/>
+            <generator class="native" />
+        </id>
+         <property name="rname" type="string"/> 
+         <property name="content"/> 
+        <set name="power" table="t_role_power" lazy="false">
+        	<key column="rid"/>
+        	<many-to-many class="com.baidu.entity.Power" column="id"/>
+        </set>
+    </class>
+
+   
+    <class name="com.baidu.entity.Power" table="t_power">
+        <id name="id" type="int">
+            <column name="ID"/>
+            <generator class="native"/>
+        </id>
+        <property name="pid"/>
+        <property name="pname" type="java.lang.String"/>
+        <property name="url"/>
+        <property name="target"/>
+    </class>
+   
+</hibernate-mapping>

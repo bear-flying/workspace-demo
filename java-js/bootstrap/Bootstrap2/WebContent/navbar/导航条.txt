@@ -1,0 +1,11 @@
+navbar.jsp : 
+	base.jsp : 默认样式的导航条
+	brand.jsp : Brand image (品牌图标)
+	form.jsp :　表单
+	button.jsp : 按钮
+	text.jsp : 文本
+	link.jsp :　非导航的链接
+	fixtop.jsp　: 固定在顶部
+	fixbottom.jsp : 固定在底部
+	statictop.jsp : 静止在顶部
+	inverse.jsp : 反色的导航条

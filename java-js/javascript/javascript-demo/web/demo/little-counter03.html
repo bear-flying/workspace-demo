@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>little-counter03</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+ 
+  <input type="text" id="num1" />
+
+  <select id="sel">
+  	<option value="+">+</option>
+	<option value="-">-</option>
+	<option value="*">*</option>
+	<option value="/">/</option>
+  </select>
+
+  <input type="text" id="num2" /> = <input type="text" id="total" /><br/>
+
+  <input type="button" value="提交" onclick="count()" />
+ </body>
+</html>
+<script>
+	function count(){
+        var total = document.getElementById("total");
+
+		var num1 = document.getElementById("num1").value;
+		var num2 = document.getElementById("num2").value;
+		var sel  = document.getElementById('sel').value;
+		switch(sel){
+			case '+':
+            total.value = parseFloat(num1) + parseFloat(num2);
+			break;
+			case '-':
+            total.value = parseFloat(num1) - parseFloat(num2);
+			break;
+			case '*':
+            total.value = parseFloat(num1) * parseFloat(num2);
+			break;
+			case '/':
+            total.value = parseFloat(num1) / parseFloat(num2);
+			break;
+		}
+	}
+	
+
+</script>

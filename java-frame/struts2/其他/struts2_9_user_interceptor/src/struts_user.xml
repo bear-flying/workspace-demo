@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"struts-2.0.dtd">
+	
+<struts>
+	
+	<package name="user" extends="struts-default">
+		
+		<interceptors>
+			<interceptor name="My1" class="com.bw.interceptor.My1Interceptor" />
+			<interceptor name="My2" class="com.bw.interceptor.My2Interceptor" />
+			<interceptor name="My3" class="com.bw.interceptor.TimerInterceptor" />
+			<interceptor name="My4" class="com.bw.interceptor.Timer2Interceptor" />
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="My1" />
+				<interceptor-ref name="My2" />
+			</interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<action name="user" class="com.bw.action.UserAction">
+		    <interceptor-ref name="defaultStack" />
+		       <interceptor-ref name="token">
+		          <param name="includeMethods">add</param>
+		    </interceptor-ref>
+            <result name="invalid.token" type="redirect">/user!list.action</result>
+			<!-- 
+			<interceptor-ref name="My4">
+				<param name="includeMethods">deletea,add</param>
+			</interceptor-ref>
+			 -->
+			 
+			 
+			<result name="toAdd" type="dispatcher">/WEB-INF/user/user_add.jsp</result>
+			<result name="success" type="redirect">/user!list.action</result>
+			<result name="list" type="dispatcher">/WEB-INF/user/user_list.jsp</result>
+			<result name="toUpdate" type="dispatcher">/WEB-INF/user/user_update.jsp</result>
+		</action>
+	</package>
+	
+</struts>
+

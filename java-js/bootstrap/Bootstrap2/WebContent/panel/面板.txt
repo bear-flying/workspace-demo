@@ -1,0 +1,7 @@
+panel.jsp :
+	base.jsp : 基本实例
+	header.jsp : 带标题的面版
+	footer.jsp : 带脚注的面版
+	color.jsp : 情境效果
+	table.jsp : 带表格的面版
+	list.jsp : 带列表组的面版

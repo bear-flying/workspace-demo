@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>little-counter02</title>
+</head>
+<script>
+    function add(){
+        var a = xiaobaixia.num1.value;
+        var b = xiaobaixia.num2.value;
+        xiaobaixia.computer.value=eval(a)+eval(b);
+    }
+    function minute(){
+        var a = xiaobaixia.num1.value;
+        var b = xiaobaixia.num2.value;
+        xiaobaixia.computer.value=eval(a)-eval(b);
+    }
+    function times(){
+        var a = xiaobaixia.num1.value;
+        var b = xiaobaixia.num2.value;
+        xiaobaixia.computer.value=eval(a)*eval(b);
+    }
+    function chu(){
+        var a = xiaobaixia.num1.value;
+        var b = xiaobaixia.num2.value;
+        xiaobaixia.computer.value=eval(a)/eval(b);
+    }
+</script>
+<body>
+<form action="" name="xiaobaixia" >
+    <input type = "text" name="num1"><br>
+    <input type = "text" name="num2"><br>
+    <input type="button" value="加" onclick="add();" >
+    <input type="button" value="减" onclick="minute();" >
+    <input type="button" value="乘" onclick="times();" >
+    <input type="button" value="除" onclick="chu();" >
+    <br><input type = "text" name="computer">
+</form>
+</body>
+</html>

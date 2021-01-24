@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.ui.theme" value="simple"></constant>
+
+
+
+
+
+	<package name="user" extends="struts-default" namespace="/">
+		<action name="user" class="com.baidu.action.UserAction">
+			<result name="list">/WEB-INF/view/main.jsp</result>
+			<result name="toleft">/WEB-INF/view/left.jsp</result>
+			<result name="toimport">/WEB-INF/view/importExcel.jsp</result>
+			<result name="userList">/WEB-INF/view/user_list.jsp</result>
+			<result name="deptList">/WEB-INF/view/dept_list.jsp</result>
+			<result name="roleList">/WEB-INF/view/role_list.jsp</result>
+			<result name="ckyg">/WEB-INF/view/ckyg_list.jsp</result>
+			<result name="ckjs">/WEB-INF/view/ckjs_list.jsp</result>
+			<result name="ckbm">/WEB-INF/view/ckbm_list.jsp</result>
+			<result name="ckqx">/WEB-INF/view/ckqx_list.jsp</result>
+			<result name="xzyg">/WEB-INF/view/xzyg_list.jsp</result>
+			<result name="xzzw">/WEB-INF/view/xzzw_list.jsp</result>
+			<result name="error">/index.jsp</result>
+			<result name="powerList">/WEB-INF/view/power_list.jsp</result>
+			<result name="toxzqx">/WEB-INF/view/xzqx.jsp</result>
+			<result name="saveQx" type="redirect">/WEB-INF/view/role_list.jsp</result>
+			
+			<result name="toupdate">/WEB-INF/user/user_update.jsp</result>
+			<result name="success" type="redirect">user!list.action</result>
+		</action>
+	</package>
+</struts>

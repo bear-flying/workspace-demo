@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>innerHTML</title>
+</head>
+
+<body>
+姓名：<input type="text" name="a" /><span id="b"></span><br />
+年龄：<input type="text" name="a" id="age" /><span id="c"></span><br />
+性别：<input type="radio" name="a"/>男
+	 <input type="radio" name="a" />女<span id="d"></span><br />
+<input type="submit" value="提交" name="a" onclick="fun()" />
+     
+</body>
+</html>
+
+<script>
+    function fun()
+    {
+        var arr = document.getElementsByName('a')
+        if(arr[0].value=='')
+        {
+            var s = document.getElementById('b')
+            s.innerHTML = '*用户名不能为空'
+            s.style.color = 'red'
+        }
+        if((arr[0].value).length<=5&&(arr[0].value).length>=2)
+        {
+            var s = document.getElementById('b')
+            s.innerHTML = '*用户名可用√'
+            s.style.color = 'blue'
+        }
+        else{
+            var s = document.getElementById('b')
+            s.innerHTML = '*用户名不可用×'
+            s.style.color = 'red'
+        }
+        //年龄判断
+        var arr1 = document.getElementById('age').value
+        var reg = /\d/
+
+        if(reg.test(arr1)==false)
+        {
+            var k = document.getElementById('c')
+            k.innerHTML = '*年龄必须为数字×'
+            k.style.color = 'red'
+        }
+        else{
+            var k = document.getElementById('c')
+            k.innerHTML = '*该年龄可用√'
+            k.style.color = 'blue'
+        }
+        //性别
+        var nan = arr[2].checked
+        var nv = arr[3].checked
+        if(nan==nv)
+        {
+            var y = document.getElementById('d')
+            y.innerHTML = '*必须选择一个×'
+            y.style.color = 'red'
+        }
+        else{
+            var y = document.getElementById('d')
+            y.innerHTML = '*可用√'
+            y.style.color = 'blue'
+        }
+    }
+
+
+</script>

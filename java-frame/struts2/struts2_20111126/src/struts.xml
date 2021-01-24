@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+	
+<struts>
+	
+	<!-- package下面有action子节点，这个子节点就是处理客户端请求的action的配置 -->
+    <package name="wp-base" extends="struts-default" namespace="/" >
+    	
+    	
+    	<action name="order" class="com.javasky.stock.order.action.OrderAction">
+    		
+    		<result name="success">/stock/order/orderList.jsp</result>
+    		<result name="updateInfo">/stock/order/updateOrder.jsp</result>
+			    		
+    	</action>
+    	
+    	<action name="material" class="com.javasky.stock.material.action.MaterialAction">
+    		
+    		<result name="selMaterials">/stock/order/selMaterials.jsp</result>
+			    		
+    	</action>
+    	
+    </package>
+    
+</struts>
+

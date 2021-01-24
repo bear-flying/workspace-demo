@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.bbb.dto.Person" table="t_person">
+        <id name="id" type="java.lang.Integer">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="java.lang.String" />
+        <property name="age" type="java.lang.Integer" />
+     	<one-to-one name="card" class="com.bbb.dto.Card" cascade="delete"/>
+    </class>
+</hibernate-mapping>

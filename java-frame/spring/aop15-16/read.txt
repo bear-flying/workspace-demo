@@ -1,0 +1,11 @@
+DEMO: JDK动态代理 和 CGLIB动态代理。
+简单实现了两种动态代理，环绕通知。
+含有Junit测试。
+环境：JDK1.7
+
+DEMO: JDK dynamic proxy and CGLIB dynamic proxy.
+Two kinds of dynamic agents are implemented simply, surrounded by notifications.
+Test with Junit.
+Environment: JDK1.7
+
+

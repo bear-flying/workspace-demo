@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>s8.html</title>
+        <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+        <meta http-equiv="description" content="this is my page">
+        <meta http-equiv="content-type" content="text/html; charset=GB18030">
+        <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    	 <script>
+          function go(){
+				var name=kk.user.value;
+				var email=kk.email.value;
+				var pass=kk.pass.value;
+				var rpass=kk.rpass.value;
+			if((name=="")){
+				alert("姓名不能为空！！ ");
+			}else if(email==""){
+				alert("邮件不能为空!!!")
+			}else if(email.indexOf("@")==-1||email.indexOf(".")==-1||email.length<7){
+				alert("邮件输入有误！！！")
+				}else if(pass==""){
+				alert("密码不能为空！！！")
+			}else if(pass!=rpass){
+				alert("两次输入的密码要相同！！！")
+			}else{
+				var xmlrequest
+            //开发ajax第一步，创建XMLHttpRequest对象
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlrequest = new XMLHttpRequest();//创建 XMLHttpRequest 对象
+            }
+            else {// code for IE6, IE5
+                xmlrequest = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //第二步用XMLHttpRequest对象的onreadystatechange方法来处理你想做的事情（指定回调方法）
+            xmlrequest.onreadystatechange = function(){
+                if (xmlrequest.readyState == 4 && xmlrequest.status == 200) {
+					alert(xmlrequest.responseText);
+                    //responseText 获得字符串形式的响应数据。
+                    //responseXml：用于接收返回的XML类型的结果。
+                    document.getElementById("show").innerHTML =xmlrequest.responseText;
+                }
+            }
+            //第三步 用open()方法打开请求
+                //open最后还有两个参数（用户和密码），它们起到加密的作用。如果请求参数分开写的	话，可以省去问号。
+            xmlrequest.open("get","register?name="+name+"&email="+email+"&pass="+pass,true);
+			//第四步 用send()发送消息
+			xmlrequest.send();
+			}
+		  }
+     	</script>
+    </head>
+ </body>
+	<form name="kk" action="" method="get">
+    姓名:<input type="text" name="user"><br>
+    邮件:<input type="text" name="email"><br>
+    密码:<input type="password" name="pass"><br>
+    确认密码:<input type="password" name="rpass"><br>
+	<input type="button" value="会员注册" onclick="go()">
+	</form>
+	<span id="show"></span>

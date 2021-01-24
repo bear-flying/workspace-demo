@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.bbb.dto.Card" table="t_card">
+        <!-- Card的主键的值依赖person属生所对应的类中的主键 -->
+        <id name="cid" type="java.lang.Integer">
+            <generator class="foreign">
+            	<param name="property">person</param>
+            </generator>
+        </id>
+        <property name="cname" type="java.lang.String" />
+       
+       <one-to-one name="person" class="com.bbb.dto.Person" cascade="all"/>
+     
+    </class>
+</hibernate-mapping>

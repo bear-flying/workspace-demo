@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>小型时钟02</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <input type="button" value="开始" onclick="start1()" id="btn1" />
+  <input type="text" name="" id="times" style="width:150px;text-align:center"/>
+  <input type="button" value="停止" onclick="end1()" id="btn2"/>
+ </body>
+</html>
+<script type="text/javascript">
+
+    var strtime;
+
+	function dt(){
+		var date = new Date().toLocaleString().substring(10);
+		var times = document.getElementById('times');
+		times.value = date;
+	}
+	function start1(){
+		strtime = setInterval("dt()",1000);
+		document.getElementById('btn1').disabled = true;//按钮不可用
+		document.getElementById('btn2').disabled = false;//按钮可用
+	}
+	function end1(){
+		clearInterval(strtime);
+		document.getElementById('btn2').disabled = true;
+		document.getElementById('btn1').disabled = false;
+	}
+</script>

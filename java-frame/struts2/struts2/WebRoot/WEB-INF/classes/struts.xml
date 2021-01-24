@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<!--wp-base这个name随便起名 所有的配置的action都要在当前这个package中-->
+    <package name="wp-base" extends="struts-default" namespace="/" >
+    	<!--name:客户端要请求的某个action的名字  class：当前名对应的类
+		这个action的意思是：当客户端请求一个名称叫test这个类的时候 它会自动请求这个名称所对应的类-->
+    	<action name="test" class="com.javasky.struts.action.TestAction" method="execute()">
+			<!--请求action后 转到指定页面-->
+			<result name="success">/jsp/testlist.jsp</result>
+    	</action>
+    </package>
+</struts>

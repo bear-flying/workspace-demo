@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+  <head>
+    <title>ajax1.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  <script type="text/javascript">
+    //eval的功能是把里面的字符串转换成为可以使用的javascript并运行。
+
+//Ajax的用法
+//第一种：传出Text
+//在JS里
+//new Ajax.Request(url,{
+//		asynchronous : false,//意思是send完了之后立即执行后面的语句，否则就要等待send完了或者请求超时了才会执行后面的语句
+//		onSuccess : funcion(transport){//这儿的transport不能改变。否则会出现找不到对象问题
+//			var varString = transport.responseText;
+//			if(...);
+			// varString就是从请求的Action中返回出来的字符
+//		}
+//注：AJAX请求的CALLBACK有：onFailure、onSuccess、onLoading、onUninitialized
+//	});
+//在Action或者servlet里
+//传出responseText的方法是： response.getWrite.write("String");
+
+
+//第二种。传出Json
+//在JS里
+new Ajax.Request(url,{
+		asynchronous : flase,
+		onSuccess : function(transport){
+			eval("var varjson = " + transport.responseText)//
+			//varjson有两个属性：
+			varjson.isLimit;
+			varjson.leftQty;
+		}
+	})
+//在Action或者servlet里：
+//传出用json的方法是response.getWriter.write(json),这里在的json只有一组数据，格式为：[{"isLimit":isLimitValue,"leftQty":leftQtyValue}];
+//json里的数据格式是[{"key":"value","key1":"value"...},
+	//	   {"key":"value","key1":"value"...},
+	//	   {"key":"value","key1":"value"...},
+	//	  .....]
+//json的取值方法是json[i].key,json[i].key1,.....i从0开始(自己做循环取值..)
+//-----------------------------------------以上为已经封装好的ajax实例--------------------------------------------------
+
+//-----------------------------------------以下为纯javasctript的ajax实例-----------------------------------------------
+//在JS里：
+function getResult(){
+	var url = "请求的action或者servlet";
+	var request = false;
+	//由于有不同的浏览器，所以对象不一样
+	if(window.XMLHttpRequest){
+		request = new XMLHttpRequest();//这步很重要，是AJAX必不可以少的对象..	
+	}else if(window.ActiveXObject){
+		request = new ActiveObject("Microsoft.XMLHTTP");//这步很重要，是AJAX必不可以少的对象..	
+	}
+
+	if(request) {
+		request.open(method,url,true)//method:post/get,url:请求的url，true:暂时未知
+		request.onreadystatechange = jsMethod;//请求之后处理请求返回参数的方法
+		request.send(null);//暂时不明
+	}
+	//下面开始解析XML文档..
+	function jsMethod(){
+		//下面不明白为什么要它的readystate等于4和status等于200...
+		if(request.readyState == 4  && req.status == 200){
+			var type = req.responseXML.getElementByTagName("type_name");
+			var array = new Array();
+			for(var i= 0;i<array.length;i++){
+				array[i] = type[i].firstChild.data;
+				document.all['td'].innerHTML += array[i]+"<br/>";
+			}
+		}
+	}
+}
+//在servlet里：
+//PrintWriter out = response.getWriter();
+//StringBuffer sb = new StringBuffer("<type>");
+//sb.append("<type_name>AA</type_name>");
+//sb.append("<type_name>BB</type_name>");
+//.....
+//out.write(sb.toString);
+//out.close();
+//都是通过response.getWriter.write(String)传递出去的..
+</script>
+  </body>
+</html>

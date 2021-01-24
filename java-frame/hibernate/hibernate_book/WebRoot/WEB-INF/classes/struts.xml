@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts.dtd">
+<struts>
+	<package name="struts" extends="struts-default" namespace="/">
+		<action name="book_*" class="com.zh.action.BookAction" method="{1}">
+			<result name="list" >/WEB-INF/book/book_list.jsp</result>
+			<result name="add" >/WEB-INF/book/book_add.jsp</result>
+			<result name="update" >/WEB-INF/book/book_update.jsp</result>
+		</action>
+		<action name="type_*" class="com.zh.action.TypeAction" method="{1}">
+			<result name="list" >/WEB-INF/type/type_list.jsp</result>
+			<result name="add" >/WEB-INF/type/type_add.jsp</result>
+			<result name="update" >/WEB-INF/type/type_update.jsp</result>
+		</action>
+	</package>
+</struts>

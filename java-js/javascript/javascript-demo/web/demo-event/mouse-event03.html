@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> mouse-event03 </title>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style>
+	img{display:none}
+	#mydiv{background:url(image/a.bmp) no-repeat;width:152px;height:89px;padding:25px;color:white;display:none;
+	position:absolute;left:0px;top:0px;}
+  </style>
+ </head>
+
+ <body>
+  <p onmouseover='f("pic")' onmouseout="f1('pic')">鼠标·移入显示-移出隐藏</p>
+  <img src='image/841401_1324570247T5Pl.jpg' width=100 height=100 id='pic'/>
+  <p onmouseover='f("pic1")' onmouseout="f1('pic1')">鼠标·移入显示-移出隐藏</p>
+  <img src='image/4239844_9392.jpg' width=100 height=100 id='pic1'/>
+ </body>
+</html>
+<script>
+    //鼠标事件  onclick  ondblclick  onmouseover onmouseout移开  onmousemove 移动
+	function f(k) {
+		document.getElementById(k).style.display='block';
+		document.getElementById(k).style.border='2px solid red';
+	}
+
+	function f1(k) {
+		document.getElementById(k).style.display='none';
+	}
+</script>

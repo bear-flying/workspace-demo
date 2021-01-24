@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+  http://www.springframework.org/schema/tx   
+  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  http://www.springframework.org/schema/aop
+  http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+  http://www.springframework.org/schema/context  
+  http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+  http://www.springframework.org/schema/util  
+  http://www.springframework.org/schema/util/spring-util-3.0.xsd  
+  http://www.springframework.org/schema/cache    
+  http://www.springframework.org/schema/cache/spring-cache.xsd" >
+
+	<context:component-scan base-package="org.wangf.*" />
+
+	<!-- 获取数据源 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/shop</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>root</value>
+		</property>
+	</bean>
+
+	<!--2 将数据源交给ibatis 工厂bean的 -->
+	<bean id="sqlMapClient" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:SqlMapConfig.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 3 将SqlSessionFactoryBean 交给mybatis 的 模板工具类管理 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlMapClient" />
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	  <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		  <property name="dataSource" ref="dataSource" />
+ 	  </bean>
+ 	  
+  <!--5 管理实务的方式 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <!-- 6  实现  action  service  dao  组建之间的依赖关系 -->
+     <context:component-scan base-package="*">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+     </context:component-scan> 
+
+</beans> 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<!-- 起别名 -->
+	<typeAlias alias="Student" type="com.itcast.Student" />
+	<!-- 查找所有用户 -->
+	<select id="selectAllStudent" resultClass="Student">
+		select * from student
+	</select>
+	
+	<!-- 通过id查找用户 -->
+	<!-- parameterClass表示参数类型 -->
+	<select id="selectStudentById" parameterClass="int" resultClass="Student">
+		select * from student
+		where sid = #sid#
+	</select>
+	
+	<!-- 添加用户 -->
+	<insert id="insertStudent" parameterClass="Student">
+		insert into student(sid,sname,major,birth,score)
+		values(#sid#,#sname#,#major#,#birth#,#score#)
+	</insert>
+	
+	<!-- 删除用户 -->
+	<delete id="deleteStudentById" parameterClass="int">
+		delete  from student
+		where sid = #sid# 
+	<!-- 特别注意：这个delete中的 #userId#可以改为任意的其他如 #Id#等，而在其他如select等语句不可行 -->
+	</delete>
+	
+	<!-- 修改用户 -->
+	<update id="updateStudent" parameterClass="Student">
+		update student
+		set sname = #sname#,
+		    major = #major#,
+		    birth = #birth#,
+		    score = #score#
+		where sid = #sid#
+	</update>
+	
+	<!-- 模糊查询，通过用户名查找用户 -->
+	<select id="selectStudentByName" parameterClass = "String" resultClass = "Student">
+		select sid,sname,major,birth,score
+		from student
+		where sname like '%$sname$%'
+	<!-- 非常注意：这个'%$userName$%'中的$符号和#的不同使用之处,$表示会用变量的只替换掉，用#是不行的，#是占位符 -->
+	</select>
+	
+	<!-- 添加用户，获取自动增长的序列号，处理添加相同的sid情况 -->
+	<insert id="insertStudentBySequence" parameterClass = "Student" >
+		<selectKey resultClass = "int" keyProperty="sid" >
+		select studentPKSequence.nextVal from dual
+		</selectKey>
+		insert into student(sid,sname,major,birth,score)
+		values(#sid#,#sname#,#major#,#birth#,#score#)
+	</insert>
+</sqlMap>

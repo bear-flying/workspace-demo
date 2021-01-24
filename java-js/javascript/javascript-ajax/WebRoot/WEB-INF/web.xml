@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name></display-name>	
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+
+  <servlet>
+    <servlet-name>TestXmlServlet</servlet-name>
+    <servlet-class>com.TestXmlServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Search</servlet-name>
+    <servlet-class>com.Search</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SelectAll</servlet-name>
+    <servlet-class>ajax.SelectAll</servlet-class>
+  </servlet>
+
+
+
+  <servlet-mapping>
+    <servlet-name>SelectAll</servlet-name>
+    <url-pattern>/select</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestXmlServlet</servlet-name>
+    <url-pattern>/TestXmlServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Search</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
+</web-app>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+  	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.ui.theme" value="simple"/>
+
+    <package name="wp-base" extends="struts-default" namespace="/">
+		<action name="cat" class="com.maomao.action.CatAction" >			
+			<result name="found">/WEB-INF/cat/list.jsp</result>
+			<result name="append">/WEB-INF/cat/add.jsp</result>
+			<result name="foundOne">/WEB-INF/cat/update.jsp</result>
+			<result name="success" type="redirect">cat!findAll.action</result>
+		</action>	
+	</package>
+</struts>
+

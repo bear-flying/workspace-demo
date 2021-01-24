@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+  <head>
+    <title>caozuo.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    <input type="text" id="num" >
+    <input type="button" onclick="run()" value="查询">
+    <div id="show"></div>
+  </body>
+  <script>
+  	function run(){
+  		var id = document.getElementById('num').value;
+  		if(id==''){
+  			alert("查询必须添加内容！");
+  		}else{
+  			var xmlrequest;
+  			if(window.XMLHttpRequest){
+  				xmlrequest = new XMLHttpRequest();
+  			}else{
+  				xmlrequest = new ActiveXObject("Microsoft.XMLHTTP");
+  			}
+  			xmlrequest.onreadystatechange = function(){
+                if (xmlrequest.readyState == 4 && xmlrequest.status == 200) {
+					//alert(xmlrequest.responseText);
+                    document.getElementById("show").innerHTML =xmlrequest.responseText;
+                }
+            };
+            xmlrequest.open("get","select?id="+id,true);
+			xmlrequest.send();
+  		}
+  		
+  	}
+  </script>
+</html>

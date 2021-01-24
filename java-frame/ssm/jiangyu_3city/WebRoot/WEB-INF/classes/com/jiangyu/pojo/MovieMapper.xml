@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangyu.mapper.MovieMapper" >
+  <resultMap id="SimpleMovie" type="com.jiangyu.pojo.Movie" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="citynames" property="addressId" jdbcType="VARCHAR" />
+    <result column="datea" property="datea" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.jiangyu.pojo.Movie" id="ResultMovie" extends="SimpleMovie">
+  	<association property="type" javaType="com.jiangyu.pojo.Type" resultMap="com.jiangyu.mapper.TypeMapper.SimpleType">
+  	</association>
+  	<collection property="cinemalist" ofType="com.jiangyu.pojo.Cinema" select="com.jiangyu.mapper.CinemaMapper.findCinemasByMovieid" column="id">
+  	</collection>
+  </resultMap>
+  
+  <insert id="addMovie" parameterType="com.jiangyu.pojo.Movie">
+  <!--  useGeneratedKeys="true" keyProperty="id" 
+  		如果加上这两个属性，在添加的时候就可以省去查询电影的ID 即下面的findMovieId
+  -->
+  	insert into a_movie(name,price,address_id,datea,type_id)
+  	values(#{name},#{price},#{addressId},#{datea},#{type.id})
+  </insert>
+  
+  <select id="findMovieId" parameterType="com.jiangyu.pojo.Movie" resultType="int">
+   select m.id from a_movie m where m.name=#{name} and m.price=#{price}
+  </select>
+   
+  <select id="findAll" parameterType="map" resultMap="ResultMovie" >
+	select a.*,b.cname,c.* from (
+	  select a.*,CONCAT(b.cityname,c.cityname,d.cityname) citynames from (
+		SELECT a.*, SUBSTRING_INDEX(address_id, ',', 1) gid,
+			substring_index(substring_index(address_id,',',2),',',-1) sid,
+			SUBSTRING_INDEX(address_id, ',' ,- 1) cityid
+		FROM	
+			a_movie a
+		WHERE
+			address_id IS NOT NULL)a,a_city b,a_city c,a_city d
+	  where a.gid =b.id and a.sid =c.id and a.cityid =d.id)a
+	  ,(select cid,GROUP_CONCAT(name) cname from a_cinema a GROUP BY(cid)) b,a_type c
+   where a.cityid =b.cid and a.type_id = c.id limit #{pageIndex},#{pageSize}
+  </select>
+   
+  <select id="getCount" resultType="int">
+  	select count(*) from a_movie
+  </select> 
+   
+  <select id="findOneMovie" parameterType="int" resultMap="SimpleMovie">
+  	select * from a_movie where id = #{id}
+  </select> 
+  
+  <select id="findCinemaByMovie" parameterType="int" resultMap="com.jiangyu.mapper.CinemaMapper.SimpleCinema">
+  	select a.* from a_cinema a left join a_movie_cinema b on a.id=b.cinemaId where b.movieId = #{movieid}
+  </select> 
+   
+</mapper>

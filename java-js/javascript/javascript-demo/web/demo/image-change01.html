@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>image-change01</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style type='text/css'>
+	img{position:absolute;left:500px;top:100px}
+  </style>
+ </head>
+
+ <body>
+  <img src='image/安卓壁纸_创意ac1f.jpg' width=300 height=300 id='a'/>
+ </body>
+</html>
+<script>
+    //window对象：
+    //setInterval('反复执行的代码',时间)
+    //setTimeout('执行一次的代码',时间)
+    var i = 0;
+    var arr = ['image/841401_1324570247T5Pl.jpg',
+        'image/安卓壁纸_城市cae6.jpg','image/安卓壁纸_创意73f3.jpg',
+        'image/安卓壁纸_创意607b.jpg','image/安卓壁纸_创意ac1f.jpg'];
+	window.setInterval('f1()',1000);
+	function f1() {
+		document.getElementById('a').src=arr[i];
+		i++;
+		if(i>4) {
+			i=0;
+		}
+	}
+</script>

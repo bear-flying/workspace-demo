@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+ 
+	<bean id="chartAction" class="com.baidu.chart.ChartAction" scope="prototype">
+		<property name="assetService" ref="assetService"></property>   
+		<property name="selectDataService" ref="selectDataService"></property>   
+		<property name="mailService" ref="mailService"></property>   
+		<property name="assetDetailService" ref="assetDetailService"></property>   
+	</bean>
+	
+	
+	<bean id="assetService" class="com.baidu.asset.service.AssetServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property> 
+	</bean>
+	<bean id="assetDetailService" class="com.baidu.asset.service.AssetDetailServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property> 
+	</bean>
+	<bean id="mailService" class="com.baidu.mail.service.MailServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property> 
+	</bean>
+	
+	
+	<!-- ======================== 调度工厂 ======================== -->
+    <bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+            	<!-- 调度触发器 -->
+                <ref bean="CronTriggerBean1"/>
+                <ref bean="CronTriggerBean2"/>
+            </list>
+        </property>
+    </bean>  
+
+	<!-- ======================== 调度触发器1 ======================== -->
+    <bean id="CronTriggerBean1" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    	<!-- 任务调度类 -->
+        <property name="jobDetail" ref="SpringQtzJobMethod1"></property>
+        <!-- 任务执行时间 -->
+        <property name="cronExpression" value="0 0 2 ? * 7"></property>
+    </bean>
+    
+    <!-- 任务调度类 -->
+     <!-- 使用MethodInvokingJobDetailFactoryBean， 通过targetMethod指定调用方法-->  
+    <bean id="SpringQtzJobMethod1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 任务执行类 -->
+        <property name="targetObject">
+            <ref bean="chartAction"/>
+        </property>
+        <property name="targetMethod">  
+            <value>findQuartzDmps</value><!-- 要执行的方法名称 -->
+        </property>
+    </bean>
+    
+	<!-- ======================== 调度触发器2 ======================== -->
+    <bean id="CronTriggerBean2" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    	<!-- 任务调度类 -->
+        <property name="jobDetail" ref="SpringQtzJobMethod2"></property>
+        <!-- 任务执行时间 -->
+        <property name="cronExpression" value="0 0 2 * * ? "></property>
+    </bean>
+    
+    <!-- 任务调度类 -->
+    <bean id="SpringQtzJobMethod2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="chartAction"/>
+        </property>
+        <property name="targetMethod">  
+            <value>findQuartzMails</value>
+        </property>
+    </bean>
+    
+</beans>

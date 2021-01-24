@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bee.pojo.User" table="t_user">
+		<id name="uid" length="3">
+			<generator class="native"/>
+		</id>
+		<property name="uname" length="18"/>
+		<property name="pwd" length="18"/>
+
+	</class>
+</hibernate-mapping>

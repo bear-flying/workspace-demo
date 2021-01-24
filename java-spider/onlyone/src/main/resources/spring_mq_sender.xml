@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    
+      
+    <!-- 连接工厂 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供--> 
+    <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">  
+        <property name="brokerURL" value="tcp://localhost:61616" /> 
+        <property name="closeTimeout" value="60000" />  
+<!--         <property name="userName" value="admin" />   -->
+<!--         <property name="password" value="admin" />  -->
+    </bean>  
+    
+    <!-- Spring JMS Template -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">  
+        <property name="connectionFactory" ref="activeMQConnectionFactory" />  
+        <property name="defaultDestination" ref="topic" /> 
+        <property name="messageConverter">  
+            <bean class="org.springframework.jms.support.converter.SimpleMessageConverter" />
+        </property>  
+    </bean> 
+    
+        <!--queue队列-->  
+		<bean id="queue" class="org.apache.activemq.command.ActiveMQQueue">
+			<!-- 
+		    <constructor-arg>  
+		        <value>asyncQueue</value>  
+		    </constructor-arg>  
+			 -->  
+		</bean>  
+        <!--topic主题-->  
+		<bean id="topic" class="org.apache.activemq.command.ActiveMQTopic">
+		<!-- 
+		    <constructor-arg>  
+		        <value>asyncTopic</value>  
+		    </constructor-arg>  
+		 -->  
+		</bean> 
+</beans>

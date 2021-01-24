@@ -1,0 +1,63 @@
+package com.baidu.dept.bean;
+
+import com.baidu.user.bean.User;
+
+
+public class Dept {
+	      private Integer id;
+          private String deptName;
+          private Dept pDept;
+          private User firstUser;
+          private User secondUser;
+          private User secretary;
+		public Integer getId() {
+			return id;
+		}
+		public void setId(Integer id) {
+			this.id = id;
+		}
+		public String getDeptName() {
+			return deptName;
+		}
+		public void setDeptName(String deptName) {
+			this.deptName = deptName;
+		}
+		public Dept getpDept() {
+			return pDept;
+		}
+		public void setpDept(Dept pDept) {
+			this.pDept = pDept;
+		}
+		public User getFirstUser() {
+			return firstUser;
+		}
+		public void setFirstUser(User firstUser) {
+			this.firstUser = firstUser;
+		}
+		public User getSecondUser() {
+			return secondUser;
+		}
+		public void setSecondUser(User secondUser) {
+			this.secondUser = secondUser;
+		}
+		public User getSecretary() {
+			return secretary;
+		}
+		public void setSecretary(User secretary) {
+			this.secretary = secretary;
+		}
+		public Dept(Integer id, String deptName, Dept pDept, User firstUser, User secondUser, User secretary) {
+			super();
+			this.id = id;
+			this.deptName = deptName;
+			this.pDept = pDept;
+			this.firstUser = firstUser;
+			this.secondUser = secondUser;
+			this.secretary = secretary;
+		}
+		public Dept() {
+			super();
+		}
+		
+		
+}

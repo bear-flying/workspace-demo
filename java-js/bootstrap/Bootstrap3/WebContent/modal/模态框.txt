@@ -1,0 +1,7 @@
+modal.jsp :
+	base.jsp : 基本实例
+	size.jsp : 可选尺寸
+	fade.jsp : 禁止动画效果
+	trigger.jsp : Varying modal content based on trigger button
+	param.jsp : 参数
+	method.jsp : 方法&事件

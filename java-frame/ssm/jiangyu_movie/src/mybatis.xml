@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 别名 -->
+	<!-- <typeAliases>--><!-- alias属性名对应DAO下的xml的属性名 -->
+		<!--<typeAlias type="com.ssm.pojo.Employee" alias="EmpInfo" />
+		<typeAlias type="com.ssm.pojo.Dept" alias="DeptInfo" />
+	</typeAliases>-->
+
+	<mappers>
+		<mapper resource="com/jiangyu/mapper/AreaMapper.xml" /> 
+		<mapper resource="com/jiangyu/mapper/MovieMapper.xml" /> 
+		<mapper resource="com/jiangyu/mapper/TypeMapper.xml" /> 
+		<mapper resource="com/jiangyu/mapper/YearMapper.xml" /> 
+		
+	</mappers>
+</configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baidu.parse.dao.ICommentDao" >
+  
+  <resultMap type="com.baidu.parse.pojo.Comment" id="CommentMap">
+  
+	    <id column="id" property="id" jdbcType="VARCHAR" />
+	    <result column="commentUser" property="commentUser" jdbcType="VARCHAR" />
+	    <result column="commentDate" property="commentDate" />
+	    <result column="commentNum" property="commentNum" jdbcType="VARCHAR" />
+	    <result column="comment" property="comment" jdbcType="VARCHAR" />
+	    <result column="appid" property="appid" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  
+  <insert id="addComment" parameterType="com.baidu.parse.pojo.Comment">
+  insert into comment(id,commentUser,commentDate,commentNum,comment,appid)
+  values(#{id},#{commentUser},#{commentDate},#{commentNum},#{comment},#{appid})
+  
+  </insert>
+
+  
+  
+</mapper>

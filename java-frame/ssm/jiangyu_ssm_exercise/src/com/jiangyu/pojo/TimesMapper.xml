@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangyu.mapper.TimesMapper" >
+  <resultMap id="SimpleTimes" type="com.jiangyu.pojo.Times" >
+    <id column="tid" property="id" jdbcType="INTEGER" />
+    <result column="tname" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name
+  </sql>
+  <select id="findAllTimes" resultMap="SimpleTimes" >
+    select 
+    <include refid="Base_Column_List" />
+    from q_time
+  </select>
+  
+</mapper>

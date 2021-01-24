@@ -1,0 +1,4 @@
+media.jsp :
+	base.jsp : 默认样式
+	align.jsp : Media alignment (对齐)
+	list.jsp : 媒体对象列表

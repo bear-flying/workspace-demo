@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="jquery-ui.css"/>
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="jquery-ui.js"></script>
+
+</head>
+<script type="text/javascript">
+    var websites = [
+      "Google", "NetEase", "Sohu", "Sina", "Sogou", "Baidu", "Tencent",
+      "Taobao", "Tom", "Yahoo", "JavaEye", "Csdn", "Alipay"
+    ];
+    $(function () {
+      $("#website").autocomplete({
+          source: websites
+      });
+    });
+    /*$().ready(function(){
+	    $("#name").autocomplete({
+			source:["H","He","Hel","Hell","Hello","Hello World"],//数据源
+			delay:200,//延迟时间
+			minLength:2,//最小长度
+			//focus:function(){alert("来了！！")}, //获取焦点
+			//search:function(msg){alert(msg.target.value)},//select选取对应选项的值,search输入内容
+			open:function(){alert("start")},//打开时
+			//close:function(){alert("start")},//关闭时
+		});
+    });*/
+  </script>
+<body>
+
+  <p>
+   	姓名:<input type="text" id="name"><br>
+   	 <br><br>
+    WebSite:<input type="text" id="website"/>
+  </p>
+</body>
+</html>

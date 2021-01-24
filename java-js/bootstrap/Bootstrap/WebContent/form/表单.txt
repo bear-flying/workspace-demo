@@ -1,0 +1,12 @@
+form.jsp :
+	基本实例: base.jsp
+	内联表单: inline.jsp
+	水平排列的表单: horizontal.jsp
+	被支持的控件: input.jsp
+	输入框焦点: focus.jsp
+	被禁用的输入框: disabled.jsp
+	只读输入框: readonly.jsp
+	校验状态: state.jsp
+	控件尺寸: size.jsp
+	辅助文本: tip.jsp
+	静态控件: static.jsp

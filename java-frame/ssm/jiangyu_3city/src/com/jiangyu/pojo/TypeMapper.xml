@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangyu.mapper.TypeMapper" >
+  <resultMap id="SimpleType" type="com.jiangyu.pojo.Type" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="typename" property="typename" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="findAllType" resultMap="SimpleType">
+  	select * from a_type
+<!--   	select a.id tid,a.typename from a_type a -->
+  </select>
+  
+</mapper>

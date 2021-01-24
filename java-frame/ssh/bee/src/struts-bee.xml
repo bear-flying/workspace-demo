@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+  	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+
+	<package name="bee" extends="wp-base" namespace="/bees">
+		<action name="bee" class="com.bee.action.BeeAction">
+			<!-- 这个位置启动拦截器 表示在进入BookAction之前被拦截 拦截的规则遵循拦截器中的配置 -->			
+<!--  			<interceptor-ref name="mystack"></interceptor-ref>    -->
+			<result name="found">/WEB-INF/bee/bee_list.jsp</result>
+			<result name="foundOne">/WEB-INF/bee/bee_update.jsp</result>
+			<result name="append">/WEB-INF/bee/bee_add.jsp</result>
+			<result name="success" type="redirect">/bees/bee!findAll.action</result>
+		</action>	
+	</package>
+</struts>

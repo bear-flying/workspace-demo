@@ -1,0 +1,6 @@
+buttonjs.jsp : 
+	loading.jsp : 加载状态(Stateful)
+	toggle.jsp : 点击切换(Single toggle)
+	checkbox.jsp : 复选框（Checkbox）
+	radio.jsp : 单选按钮（Radio）
+	method.jsp : 方法

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+  	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="user" extends="struts-default" namespace="/">
+		
+		<action name="user" class="com.bee.action.UserAction">	
+			<result name="success" type="redirect">/bees/bee!findAll.action</result>
+			<result name="input">index.jsp</result>
+			<result name="ress">login.jsp</result>
+			<result name="reg">/WEB-INF/user/user_add.jsp</result>
+		</action>	
+	</package>
+</struts>

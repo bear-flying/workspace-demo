@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="power">
+	<select id="findTree" resultType="java.util.Map">
+		select * from power
+	</select>
+	
+	<select id="findCountRole"  resultType="int">
+		select count(*) from role 
+	</select>
+	<select id="findRoleList"   parameterType="org.wangf.common.util.Page"  resultType="java.util.HashMap">
+		select * from role  limit #{start},#{pageSize}
+	</select>
+	
+	<insert id="addRolePower" parameterType="map">
+		insert into rolepower(roleid,powerid) values
+		<foreach item="item" index="index" collection="poweridss" separator=",">
+		        (#{roleid},#{item})
+		</foreach>
+	</insert>
+	
+	<select id="findRolePower"    parameterType="string" resultType="java.util.LinkedHashMap">
+	    select powerid from rolepower  where roleid=#{roleid}
+	</select>
+	
+	<delete id="deleteRolePowerById" parameterType="string">
+		delete from rolepower where roleid=#{roleid}
+	</delete>
+	
+	<select id="findPowerTreeByUserId" parameterType="string" resultType="java.util.LinkedHashMap">
+		select p.* from users u,userrole ur,role r,rolepower rp,power p
+		where u.Id=ur.userid and ur.roleid=r.Id and r.Id=rp.roleid and rp.powerid=p.Id
+		and u.Id=#{userid}
+	</select>
+	
+	
+</mapper>

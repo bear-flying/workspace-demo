@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> mouse-event01 </title>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style type='text/css'>
+    *{margin:0;padding:0px;}
+    #a{width:200px;height:150px;background:red;display:none;position:absolute;
+      left:0px;top:-150px;}
+    #b{margin-top:300px;margin-left:200px;position:relative;}
+  </style>
+ </head>
+
+ <body>
+  <div id='b'>
+    <div id='a'>百度：即为度娘;百度：即为度娘;百度：即为度娘;百度：即为度娘;百度：即为度娘;百度：即为度娘;百度：即为度娘;百度：即为度娘;百度：即为度娘;</div>
+    <a href='#' onmouseover='f1()' onmouseout='f2()'>百度</a>
+  </div>
+ </body>
+</html>
+<script>
+	function f1() {
+		document.getElementById('a').style.display='block';
+	}
+	function f2() {
+		document.getElementById('a').style.display='none';
+	}
+</script>

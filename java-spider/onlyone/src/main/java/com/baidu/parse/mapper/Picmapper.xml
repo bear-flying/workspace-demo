@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baidu.parse.dao.IPicDao" >
+  
+  <resultMap type="com.baidu.parse.pojo.Pic" id="PicMap">
+  	
+    	<id column="id" property="id" jdbcType="VARCHAR" />
+    	<result column="picurl" property="picurl" jdbcType="VARCHAR" />
+    	<result column="description" property="description" jdbcType="VARCHAR" />
+    	<result column="app" property="app" jdbcType="VARCHAR" />
+    
+    
+  </resultMap>
+  
+   <insert id="addPic" parameterType="com.baidu.parse.pojo.Pic">
+  insert into t_pic(id,picurl,description,app)
+  values(#{id},#{picurl},#{description},#{app})
+  
+  </insert>
+
+  
+  
+</mapper>

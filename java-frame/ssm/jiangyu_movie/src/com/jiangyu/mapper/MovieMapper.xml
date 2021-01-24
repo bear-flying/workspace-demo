@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangyu.mapper.MovieMapper" >
+  <resultMap id="BaseResult" type="com.jiangyu.pojo.Movie" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+ 	<association property="area" javaType="com.jiangyu.pojo.Area" >
+    	<id column="aid" property="id"/>
+   	 	<result column="aname" property="name"/>
+    </association>
+ 	<association property="type" javaType="com.jiangyu.pojo.Type" >
+    	<id column="tid" property="id"/>
+   	 	<result column="tname" property="name"/>
+    </association>
+ 	<association property="years" javaType="com.jiangyu.pojo.Year" >
+    	<id column="yid" property="id"/>
+   	 	<result column="years" property="years"/>
+    </association>
+  </resultMap>
+  
+  
+
+<!--  	<select id="getCount" resultType="java.lang.Integer"> -->
+<!-- 		select count(*) from b_movie -->
+<!-- 	</select> -->
+	
+	<select id="getCount" resultType="java.lang.Integer" parameterType="map">
+		select count(*) from b_movie m
+		left join b_area a  on m.area_id = a.id 
+		left join b_type t  on m.type_id = t.id
+		left join b_year y  on m.year_id = y.id
+		where 1=1
+		<if test="searchname!=null">
+			and m.name like '%${searchname}%'
+		</if>
+		<if test="searchtype!=null">
+			and t.name like '%${searchtype}%'
+		</if>
+	</select>
+	
+	<insert id="insert"  parameterType="com.jiangyu.pojo.Movie" >
+		insert into b_movie (id, name, area_id, price, type_id, year_id)
+		values(#{id}, #{name}, #{area.id},#{price},#{type.id}, #{years.id})
+	</insert>
+ 
+ 	<select id="findAll" resultMap="BaseResult" parameterType="map">
+		select m.*,a.name aname,t.name tname,y.years from b_movie m
+		left join b_area a  on m.area_id = a.id 
+		left join b_type t  on m.type_id = t.id
+		left join b_year y  on m.year_id = y.id
+		where 1=1
+		<if test="searchname!=null">
+			and m.name like '%${searchname}%'
+		</if>
+		<if test="searchtype!=null">
+			and t.name like '%${searchtype}%'
+		</if>
+		 limit #{pageIndex},#{pageSize}
+	</select>
+ 
+</mapper>

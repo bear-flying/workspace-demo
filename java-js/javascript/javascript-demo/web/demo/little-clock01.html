@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>little-clock01</title>
+</head>
+<style type='text/css'>
+    input{position:absolute;right:10px;bottom:10px}
+</style>
+<script>
+    //拿ID值直接用？
+    setInterval("littleClock.innerHTML = new Date().toLocaleString();",1000);
+
+    window.setInterval('f1()',1000);
+    function f1() {
+        var d = new Date().toLocaleString();
+        document.getElementById('a').value=d;
+    }
+</script>
+<body>
+    <span id="littleClock"></span>
+
+    <input type='text' size=30 id='a' value=''/>
+</body>
+</html>

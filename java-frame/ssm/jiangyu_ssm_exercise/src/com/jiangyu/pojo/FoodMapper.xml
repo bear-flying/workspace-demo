@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangyu.mapper.FoodMapper" >
+  <resultMap id="SimpleFood" type="com.jiangyu.pojo.Food" >
+    <id column="fid" property="id" jdbcType="INTEGER" />
+    <result column="fname" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="findAllFoods" resultMap="SimpleFood">
+ 	select * from d_food
+  </select>
+  
+  <select id="getFoodByOrderid" parameterType="int" resultMap="SimpleFood">
+  	select f.id fid,f.name fname from d_food f, d_order_food of 
+  	where f.id=of.fid and of.oid = #{id} 
+  </select>
+  
+</mapper>

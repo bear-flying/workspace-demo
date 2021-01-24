@@ -1,0 +1,499 @@
+﻿@charset
+"utf-8"
+;
+/* CSS Document */
+
+/* CSS Document GARY*/
+/* 设定全部字体为微软雅黑 */
+body {
+    font-family: Microsoft YaHei;
+    font-size: 12px;
+    background: #F1F1F1;
+    color: #707070; /* 增加蓝色风格的body内默认文字颜色 add by JiangLiye 20150323 */
+}
+
+.login_L {
+    width: 452px;
+    float: left;
+}
+
+.login_1 {
+    float: left;
+    background: url( images/login_xian.png ) no-repeat left 36px;
+    width: 300px;
+    color: #FFF;
+    height: 145px;
+}
+
+.login_1 li {
+    width: 277px;
+    float: left;
+    height: 12px;
+    padding: 12px 0px 12px 23px;
+}
+
+.time {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/*.l_y_y_1 img{cursor:pointer;float:left;margin:2px 5px 0px 0px;margin:0px 5px 0px 0px\9;margin:0px 5px 0px 0px\0;_margin:0px 5px 0px 0px;display:inline;}*/
+.l_y_y_1 img {
+    cursor: pointer;
+    float: left;
+    margin: 6px 5px 0px 0px;
+    display: inline;
+}
+
+.login_1 li span {
+    float: left;
+    width: 60px;
+}
+
+.login_1 .l_sty_1 {
+    padding: 10px 0px 10px 23px;
+    position: relative;
+}
+
+.login_1 .l_sty_1 span {
+    line-height: 25px;
+}
+
+#l_y_y_1 {
+    float: left;
+    background: url( images/login_y_y_bg_1.png ) no-repeat;
+    width: 100px;
+    height: 25px;
+    padding: 6px 10px 0px 10px;
+    color: #656565;
+    cursor: pointer;
+    margin-left:20px;
+    margin-bottom:5px;
+}
+
+#l_y_y_1 img {
+    float: left;
+    margin-right: 5px;
+}
+
+#l_y_y_2 {
+    position:absolute;
+    float: left;
+    /*right: 50px;*/
+    /*top: 10px;*/
+    width: 100px;
+    background-color:#F1F1F1
+}
+
+#l_y_y_2 dd {
+    width: 92px;
+    float: left;
+    padding: 6px 0px 6px 8px;
+    color: #656565;
+    cursor: pointer;
+}
+
+#l_y_y_2 dd img {
+    float: left;
+    margin-right: 5px;
+}
+
+/*.time{float:left;margin-left:5px}*/
+.login_2 {
+    float: left;
+    margin-top: 70px;
+    background: url( images/login_s_y.png ) no-repeat;
+    width: 427px;
+    height: 110px;
+    color: #FFF;
+    padding: 10px 15px;
+    line-height: 22px;
+}
+
+.login_2 strong {
+    display: block;
+    font-size: 18px;
+    font-family: 'Microsoft YaHei';
+    padding-bottom: 5px;
+}
+
+.login_2 p {
+    width: 400px;
+    height: 110px;
+    color: #FFF;
+    line-height: 22px;
+}
+
+.login_R {
+    background: url( images/login_bg.png ) no-repeat;
+    width: 336px;
+    height: 340px;
+    float: right;
+    padding: 20px 0px 0px 25px;
+    margin-bottom: 2px
+}
+
+.l_logo {
+    float: left;
+}
+
+.login_R ul {
+    float: left;
+    width: 336px;
+    float: left;
+    padding-top: 75px;
+    padding-left: 23px;
+}
+
+.login_R li {
+    width: 280px;
+    float: left;
+    padding-top: 12px;
+}
+
+.login_R li span {
+    width: 60px;
+    float: left;
+    line-height: 30px;
+    font-weight: bold;
+    color: #616161;
+    font-size: 14px;
+}
+
+.TextField {
+    float: left;
+    border: 1px solid #B1BCC3;
+    height: 28px;
+    line-height: 28px;
+    background: url( images/login_inp_bg.gif ) repeat-x;
+    padding: 0px 2px;
+    width: 166px;
+}
+
+.TextField_checkImg {
+    float: left;
+    border: 1px solid #B1BCC3;
+    height: 28px;
+    line-height: 28px;
+    background: url( images/login_inp_bg.gif ) repeat-x;
+    padding: 0px 2px;
+    width: 86px;
+}
+
+.l_inp_2 {
+    float: left;
+    border: 1px solid #B1BCC3;
+    height: 28px;
+    line-height: 28px;
+    background: url( images/login_inp_bg.gif ) repeat-x;
+    padding: 0px 2px;
+    width: 66px;
+}
+
+.login_R li img {
+    float: left;
+    margin-left: 0px;
+    display: inline;
+}
+
+.l_btn_1 {
+    float: left;
+    background: url( images/login_btn_1.png ) no-repeat;
+    width: 117px;
+    height: 36px;
+    cursor: pointer;
+    border: none;
+}
+
+/*.login_R p{float:left;margin-bottom:5px;padding-right:20px;margin-top:10px;padding-left:20px;background:url(images/login_pic_1.png) no-repeat left center;line-height:16px;color:#006AB1;}*/
+
+.login_3 {
+    width: 100%;
+    float: left;
+    padding-top: 55px;
+    text-align: center;
+    background: url( images/login_footer.png ) no-repeat center bottom;
+    padding-bottom: 28px;
+    color: #9FC6DA;
+    line-height: 24px;
+}
+
+.login_3 a {
+    margin-left: 15px;
+    padding-left: 20px;
+    color: #0286CA;
+    display: inline-block;
+}
+
+.login_3_span {
+    cursor: pointer;
+}
+
+.checkImg {
+    height: 28px;
+    cursor: hand;
+    width: 75
+}
+
+/*body,table,textarea,input{font-size:12px;font-family:Arial, Helvetica, sans-serif;}*/
+.f_14 {
+    font-size: 14px;
+}
+
+.bbs_list_1 .gray {
+    color: #727272;
+}
+
+.bbs_list_1 .yellow_1 {
+    color: #F09018;
+}
+
+.bbs_list_1 .green {
+    color: #6A9400;
+}
+
+.blue_d_1 {
+    color: #2480C9;
+    padding-left: 10px;
+}
+
+.blue_d_1 img {
+    margin-right: 3px;
+}
+
+.yellow_d_1 {
+    color: #EF9119;
+    padding-left: 40px;
+}
+
+.yellow_d_1 img {
+    margin-right: 3px;
+}
+
+.blue_d_2 {
+    color: #2480C9;
+    padding-left: 40px;
+}
+
+.blue_d_2 img {
+    margin-right: 3px;
+}
+
+.yellow_d_2 {
+    color: #EF9119;
+    padding-left: 54px;
+}
+
+.red {
+    color: #FF0000;
+}
+
+.green {
+    color: #6A9400;
+}
+
+.bg_1 {
+    background: url( images/login_bg_top.jpg ) repeat-x center top;
+}
+
+.bg_top {
+    height: 100%
+}
+
+.bg_middle {
+    background: url( images/login_bg_middle.jpg ) repeat-x center top;
+}
+
+.bg_foot {
+    color: #000000
+}
+
+;
+.tableheight {
+    height: 100%
+}
+
+.login {
+    width: 856px;
+    margin-top: 5px;
+    auto: 0px auto;
+}
+
+.browesPosition {
+    position: absolute;
+    width: 100%
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button,
+    textarea, p, blockquote, th {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    text-align: left;
+    color: #38749C;
+}
+
+em, u {
+    font-style: normal;
+}
+
+dl, ul, ol, li {
+    list-style: none;
+}
+
+img {
+    border: 0px;
+}
+
+a {
+    color: #38749C;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.xiangDui {
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+.login_4_span {
+    display: inline-block;
+    cursor: pointer;
+}
+
+body {
+    background: #FFFFFF
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.bannerPoint {
+    z-index: 101;
+    position: relative;
+    bottom: 20px;
+    width: 100%;
+}
+
+.bannerPoint img {
+    padding-left: 3px;
+}
+
+.tips {
+    color: #696969;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.language {
+    color: #696969;
+    font-size: 12px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.language span {
+    /*width: 60px;*/
+    display: block;
+    float: left;
+    /*line-height: 30px;*/
+}
+
+.language div {
+    background: url( images/language_bg.png ) no-repeat;
+    cursor: pointer;
+    float: left;
+    width: 150px;
+    height: 30px;
+    padding-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: -3px;
+    vertical-align: bottom;
+}
+
+.function {
+    color: #5C86CC;
+    font-size: 12px;
+    width: 100%;
+    float: left;
+    margin-top:10px;
+}
+
+.function img {
+    padding-bottom: -3px;
+    vertical-align: bottom;
+}
+
+.user_input {
+    background: url( images/input_bg.gif );
+    border: 0;
+    height: 27px;
+    width: 223px;
+    padding: 5px;
+}
+
+.img_input {
+    background: url( images/img_bg.gif );
+    border: 0;
+    height: 27px;
+    width: 138px;
+    padding: 5px;
+    float: left;
+}
+
+.img_check {
+    width: 70;
+    float: right;
+}
+
+.input_area {
+}
+
+.input_area td {
+    font-family: 微 软 雅 黑, Arial, Helvetica, sans-serif;
+    color: #474646;
+}
+
+.input_area img {
+    vertical-align: bottom;
+    float: right
+}
+
+.version {
+    color: #A5A6A6;
+    font-size: 12px;
+    padding-left: 120px;
+}
+
+.language_style{
+    margin-top:4px
+}

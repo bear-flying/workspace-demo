@@ -1,0 +1,7 @@
+pagination.jsp : 
+	base.jsp : 默认分页
+	disabled.jsp : 禁用和激活状态
+	size.jsp : 尺寸
+	pager.jsp : 翻页
+	align.jsp : 对齐链接
+	disabled2.jsp : 可选的禁用状态

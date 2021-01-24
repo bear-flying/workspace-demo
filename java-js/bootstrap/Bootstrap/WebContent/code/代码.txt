@@ -1,0 +1,6 @@
+code.jsp:
+	内联代码: inlinecode.jsp
+	用户输入: user.jsp
+	代码块/基本代码块: codeblock.jsp
+	变量: var.jsp
+	程序输出: print.jsp

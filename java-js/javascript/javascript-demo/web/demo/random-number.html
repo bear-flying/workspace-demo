@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>random-number</title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+	<input type="text"/>
+	<input type="text"/>
+	<input type="text"/>	
+	<input type="text"/>
+	<input type="text"/>
+	<input type="text"/>
+	<input type="text"/>
+	<button onclick="op()">随机数字</button>
+ </body>
+</html>
+<script type="text/javascript">
+	function op(){
+		var input = document.getElementsByTagName('input');
+		for(var i = 0; i < input.length ; i++){
+			input[i].value = parseInt(Math.random()*10);
+		}
+	}
+</script>

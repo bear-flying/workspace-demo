@@ -1,0 +1,55 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+
+	<!-- 配置方式1 -->
+	<!-- 第一种Handler配置（可以配合下面配置的第一种处理器映射器，使用name作为url访问。
+	也可以配合下面配置的第二种处理器映射器，使用配置的路径访问。两种处理器映射器可以同时存在。）-->
+	<bean id="itemsController1" name="/queryItems_test.action" class="cn.itcast.ssm.controller.ItemsController1" />
+	<!-- 第一种处理器映射器：处理器映射器 将bean的name作为url进行查找 ，需要在配置Handler时指定beanname（就是url）
+	所有的映射器都实现 HandlerMapping接口。-->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+    <!-- 第一种非注解处理器适配器 专门处理上面第一种Handler（ItemsController1类   实现Controller接口的处理器）
+        所有处理器适配器都实现 HandlerAdapter接口 -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+
+
+
+    <!-- 配置方式2 -->
+	<!-- 第二种Handler配置（没有name属性，只能通过下面配置的第二种处理器映射器，使用配置的路径访问） -->
+	<bean id="itemsController2" class="cn.itcast.ssm.controller.ItemsController2" />
+	<!-- 第二种处理器映射器：简单url映射器  -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/queryItems1.action">itemsController1</prop><!-- 对itemsController1进行url映射，url是/queryItems1.action -->
+				<prop key="/queryItems2.action">itemsController1</prop>
+				<prop key="/queryItems3.action">itemsController2</prop>
+			</props>
+		</property>
+	</bean>
+    <!-- 第二种非注解的适配器 专门处理上面第二种Handler（ItemsController2类   实现HttpRequestHandler接口的处理器）-->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+
+
+	<!-- 视图解析器  解析jsp解析，默认使用jstl标签，classpath下的得有jstl的包-->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 配置jsp路径的前缀
+		<property name="prefix" value="/WEB-INF/jsp/"/> -->
+		<!-- 配置jsp路径的后缀 
+		<property name="suffix" value=".jsp"/>-->
+	</bean>
+</beans>

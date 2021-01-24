@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> 全选反选01 </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <table border="1" width="500">
+	 <tr>
+		 <td></td>
+		 <td>姓名</td>
+		 <td>密码</td>
+		 <td>操作</td>
+	 </tr>
+	 <tr>
+		 <td><input type="checkbox" name="x" id="" /></td>
+		 <td>武彩云</td>
+		 <td>123</td>
+		 <td>删除</td>
+	 </tr>
+	 <tr>
+		 <td><input type="checkbox" name="x" id="" /></td>
+		 <td>武彩云</td>
+		 <td>123</td>
+		 <td>删除</td>
+	 </tr>
+	 <tr>
+		 <td><input type="checkbox" name="x" id="" /></td>
+		 <td>武彩云</td>
+		 <td>123</td>
+		 <td>删除</td>
+	 </tr>
+	 <tr>
+		 <td><input type="checkbox" name="x" id="" /></td>
+		 <td>武彩云</td>
+		 <td>123</td>
+		 <td>删除</td>
+	 </tr>
+	 <tr>
+		 <td><input type="checkbox" name="x" id="" /></td>
+		 <td>武彩云</td>
+		 <td>123</td>
+		 <td>删除</td>
+	 </tr>
+	 <tr>
+		 <td><input type="checkbox" name="x" id="" /></td>
+		 <td>武彩云</td>
+		 <td>123</td>
+		 <td>删除</td>
+	 </tr>
+	 <tr>
+		 <td colspan="4" align="center">
+			 <input type="checkbox" name="" id="clickAll" onclick="clickAll()"/>全选
+			 <input type="checkbox" name="" id="clickNull" onclick="clickNull()"/>全不选
+			 <input type="checkbox" name="" id="clickReverse" onclick="clickReverse()"/>反选
+		 </td>
+
+	 </tr>
+
+ </table>
+</body>
+</html>
+<script type="text/javascript">
+	function clickAll(){
+		var x = document.getElementsByName('x');
+		var clickAll = document.getElementById('clickAll');
+
+		if(clickAll.checked==true){
+			for(var i = 0; i<x.length ; i++){
+				x[i].checked = true;
+			}
+		
+		}
+	
+	}
+
+	function clickNull(){
+		var x = document.getElementsByName('x');
+		var clickNull = document.getElementById('clickNull');
+
+		if(clickNull.checked==true){
+			for(var i = 0; i<x.length ; i++){
+				x[i].checked = false;
+			}
+		
+		}
+	
+	}
+
+	function clickReverse(){
+		var x = document.getElementsByName('x');
+		var clickReverse = document.getElementById('clickReverse');
+
+		if(clickReverse.checked==true){
+			for(var i = 0; i<x.length ; i++){
+				if(x[i].checked == false){
+					x[i].checked = true;
+				
+				}else{
+					x[i].checked = false;
+				}
+				
+			}
+		
+		}else{
+			for(var i = 0; i<x.length ; i++){
+				if(x[i].checked == false){
+					x[i].checked = true;
+				
+				}else{
+					x[i].checked = false;
+				}
+		}
+	}
+	}
+
+</script>

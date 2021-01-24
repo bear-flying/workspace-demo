@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px;}
+body{width:720px; margin:0 auto; font-size:12px; margin-top:30px;}
+.content{border-left:solid #016db5 3px;border-right:solid #016db5 3px;}
+span{color:#9d9d9d;margin-left:10px;}
+p{color:#9d9d9d;}
+strong{color:red;font-size:16px;}
+.in1{width:280px; height:26px;line-height:26px;}
+.in2{width:280px; height:26px;line-height:26px; color:#9d9d9d}
+.in3{width:140px; height:26px;line-height:26px;}
+.bg{background:url('../images/but.png');width:124px;height:40px;border:none;}

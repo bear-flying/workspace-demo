@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"struts-2.0.dtd">
+	
+<struts>
+	<package name="user" extends="struts-default">
+		<action name="user" class="com.bw.action.UserAction">
+			<result name="toAdd" type="dispatcher">/WEB-INF/user/user_add.jsp</result>
+			<result name="success" type="redirect">/user!list.action</result>
+			<result name="list" type="dispatcher">/WEB-INF/user/user_list.jsp</result>
+			<result name="toUpdate" type="dispatcher">/WEB-INF/user/user_update.jsp</result>
+		</action>
+	</package>
+</struts>
+

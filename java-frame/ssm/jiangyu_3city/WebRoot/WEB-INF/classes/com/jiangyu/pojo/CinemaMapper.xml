@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangyu.mapper.CinemaMapper" >
+  <resultMap id="SimpleCinema" type="com.jiangyu.pojo.Cinema" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cname" property="name" jdbcType="VARCHAR" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, name, cid
+  </sql>
+  
+  <select id="findCinemasByMovieid" resultMap="SimpleCinema" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_cinema
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+ 
+ 
+  <select id="findCinemaByCity" parameterType="int" resultMap="SimpleCinema">
+   select c.* from a_cinema c where c.cid = #{id} 
+  </select>
+ 
+</mapper>

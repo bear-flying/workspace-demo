@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-10-20 11:46:14 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="org.jiangyu.pojo.Department" table="OA_DEPARTMENT">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        
+        <many-to-one name="parent" class="org.jiangyu.pojo.Department" fetch="join">
+            <column name="parent_id" />
+        </many-to-one>
+        
+        <set name="children" cascade="delete" order-by="id ASC">
+            <key>
+                <column name="parent_id" />
+            </key>
+            <one-to-many class="org.jiangyu.pojo.Department" />
+        </set>
+        
+        <set name="users" inverse="true">
+            <key>
+                <column name="department_id" />
+            </key>
+            <one-to-many class="org.jiangyu.pojo.User" />
+        </set>
+    </class>
+</hibernate-mapping>

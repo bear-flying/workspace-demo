@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+  <head>
+    <title>ajax2.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  <!--  操作Xml数据格式    -->
+  
+  <body>
+  	<script type="text/javascript">
+	  	var xmlHttp; 
+	  	function test() { 
+	  		xmlHttp=new XMLHttpRequest();  
+	  		
+	  		var v = document.getElementById("txt").value;
+	  		//访问jsp 或 action或servlet路径 
+	  		var url="TestXmlServlet?sname="+v;
+	  		
+	  		
+	  		//打开传输通道 
+	  		xmlHttp.open('post', url, true);//异步通信
+	  		//定义传输的文件HTTP头信息 
+	  		xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	  		//发送 无参数时发送null 
+	  		// xmlHttp.send(null); 
+	  		xmlHttp.send("id=001&name=" + v);
+	  		
+	  		//指定回调方法 
+	  		xmlHttp.onreadystatechange = function() {
+	  			//请求完了
+	  			if (xmlHttp.readyState == 4) {
+	  				//status 200:好了 
+	  				if (xmlHttp.status == 200) {
+	  					//写代码 
+	  					var xmlDoc =xmlHttp.responseXML;
+	  					alert(xmlDoc);
+	  					var id = xmlDoc.getElementsByTagName("id")[0].text;
+	  					var name = xmlDoc.getElementsByTagName("name")[0].text;
+	  					alert(id + "---" + name);
+	  				} else {
+	  					alert("不正确");
+	  				}
+	  			}
+	  		};
+	  		
+	  	};
+	  	
+	  	
+	  	//XMLHttpRequest初始化 
+	  	//function GetXmlHttpObject() {
+	  	//	var xmlHttp = null;
+	  	//	try {
+	  			// Firefox, Opera 8.0+, Safari 
+	  	//		xmlHttp = new XMLHttpRequest();
+	  	//	} catch (e) {
+	  			// Internet Explorer 
+	  	//		try {
+	  	//			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+	  	//		} catch (e) {
+	  	//			xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  	//		}
+	  	//	}
+	  	//	return xmlHttp;
+	  	//}
+  	</script>
+  	<form name="kk">
+  	<input type="text" id="txt" name='sname' ><span id="sp"></span><br>
+  	<button onclick="test()">发送</button>
+  	</form>
+  </body>
+</html>

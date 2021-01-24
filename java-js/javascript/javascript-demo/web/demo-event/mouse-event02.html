@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> mouse-event02 </title>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <style>
+	*{margin:0;padding:0;}
+	#mydiv{background:url(image/a.bmp) no-repeat;width:152px;height:89px;padding:25px;color:white;display:none;
+	position:absolute;left:30px;top:-139px;}
+	
+  </style>
+ </head>
+
+ <body>
+   <div style='margin-top:200px;margin-left:200px;position:relative'>
+	 <div id='mydiv'>http://www.baidu.com
+	  http://www.baidu.com 
+	  http://www.baidu.com
+	  http://www.baidu.com
+	 </div>
+     <a href='#' title='dssfd' onmouseover='show()' onmouseout='hide()'>百度</a>
+   </div>
+ </body>
+
+</html>
+<script>
+//onmouseover onmouseout
+function show()
+	{
+		document.getElementById('mydiv').style.display='block';
+	}
+	function hide()
+	{
+		document.getElementById('mydiv').style.display='none';
+	}
+</script>

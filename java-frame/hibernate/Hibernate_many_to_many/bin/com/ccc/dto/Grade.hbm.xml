@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ccc.dto.Grade">
+        <id name="gid" type="java.lang.Integer">
+            <generator class="native"/>
+        </id>
+        <property name="gname" type="java.lang.String" />
+        <set name="stu" lazy="false" fetch="join" cascade="save-update" inverse="true">
+        	<!-- 外键的字段名gid -->
+        	<key column="gid" />
+        	<one-to-many class="com.ccc.dto.Student"/>
+        </set>
+    </class>
+</hibernate-mapping>

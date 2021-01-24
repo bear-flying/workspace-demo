@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:amq="http://activemq.apache.org/schema/core"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans    
+               http://www.springframework.org/schema/beans/spring-beans-2.0.xsd   
+               http://activemq.apache.org/schema/core    
+               http://activemq.apache.org/schema/core/activemq-core.xsd">
+               
+	<!-- a pooling based JMS provider -->
+	<bean id="jmsConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+		<property name="connectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL"><value>tcp://172.19.32.152:61616</value></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<!--  queue -->
+	<amq:queue name="pubQueue" physicalName="PUBLISH-QUEUE" />
+	
+	<!--  data converter -->
+	<bean id="articleConverter" class="com.founder.publish.ArticleConverter" />
+	
+	<!--  template -->
+	<bean id="pubTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="messageConverter" ref="articleConverter" />
+		<property name="defaultDestination" ref="pubQueue"></property>
+		<!--property name="pubSubDomain" value="true" /-->
+	</bean>
+
+	<!-- publisher -->
+	<bean id="pubSender" class="com.founder.publish.Publisher">
+		<property name="jmsTemplate" ref="pubTemplate"></property>
+	</bean>
+ 
+	<bean id="revokeTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="messageConverter" ref="articleConverter" />
+		<property name="defaultDestination" ref="pubQueue"></property>
+	</bean>
+
+	<!-- revokeSender -->	
+	<bean id="revokeSender" class="com.founder.publish.Publisher">
+		<property name="jmsTemplate" ref="revokeTemplate"></property>
+	</bean>
+
+	
+	
+</beans>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		   <script type="text/javascript" src="jquery-3.3.1.js"></script>
+		<script>	
+        $.ajax({
+          url: 'http://127.0.0.1:9003/shicifang-qa/problem-qa/?userid=3432&friendid=1222',
+          type: "GET",
+          success: function (data) {
+            $(".div-border").empty();
+          	$.each(data,function(i,data){
+          		 var html = "<div class='content-div'>";
+		             html+="<p>"
+		             html+="<b>"+data.title+"</b><br>"
+		             html+="<b>"+data.content+"</b><br>"
+		             html+="<input type='button' value='关注'  onclick='guanzhu("+data.userid+")'>"		      
+		             html+="</p>"
+		             html+="</div>"
+		             $(".div-border").append(html)
+	       });       
+          }	
+          ,error: function (xhr) {
+          	 console.log("连接异常")
+          	
+          }
+        });
+        
+        function guanzhu(userid){
+        	var dataParam = {
+          	"userid":userid,
+          	"friendid":1234
+          };
+        	
+          $.ajax({
+          url: 'http://127.0.0.1:9003/shicifang-qa/problem-qa/',
+          type: "POST",
+          data:JSON.stringify(dataParam),
+          contentType: "application/json; charset=utf-8",
+          success: function (data) {
+             console.log("关注成功")
+          }	
+          ,error: function (xhr) {
+          	 console.log("关注失败")
+          }
+            });
+        }
+
+	</script>
+<style>
+.div-border{
+	border: 1px solid;
+	width: 1000px;
+	height: 500px;
+}	
+.content-div{
+	padding: 20px;
+	margin: 20px;
+	width: 100px;
+	height: 100px;
+	border: 1px solid;
+}
+.div-border .content-div{
+	float: left;
+}	
+</style>		    
+		    
+		    
+
+	</head>
+	<body>
+		<div class="div-border">
+           <div class="content-div">
+           	  <p>
+           	  	 <b>title</b><br>
+           	  	 <b>content</b><br>
+           	  	  <input type="button">
+           	  </p>
+           </div>    
+		</div>
+		
+		
+		
+	</body>
+</html>

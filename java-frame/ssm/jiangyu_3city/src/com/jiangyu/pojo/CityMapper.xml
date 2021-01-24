@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiangyu.mapper.CityMapper" >
+  <resultMap id="SimpleCity" type="com.jiangyu.pojo.City" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="cityname" property="cityname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, pid, cityname, type
+  </sql>
+  
+  <select id="findChina" resultMap="SimpleCity">
+  select * from a_city where id= 1
+  </select>
+  
+  <select id="findThird" resultMap="SimpleCity">
+  select * from a_city where pid = #{id}
+  </select>
+  
+  <select id="findOneCityname" parameterType="int" resultMap="SimpleCity">
+  select * from a_city where id = #{id}
+  </select>
+  
+  
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+ 
+	<bean id="mailAction" class="com.baidu.mail.action.MailAction" scope="prototype">
+		<property name="mailService" ref="mailService"></property>   
+		<property name="selectDataService" ref="selectDataService"></property>   
+		<property name="mailReceiverService" ref="mailReceiverService"></property>   
+	</bean>
+	
+	
+	<bean id="mailService" class="com.baidu.mail.service.MailServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property> 
+	</bean>
+	<bean id="mailReceiverService" class="com.baidu.mail.service.MailReceiverServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property> 
+	</bean>
+	
+	
+</beans>

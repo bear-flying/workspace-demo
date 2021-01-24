@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <form-beans>
+  	<form-bean name="doctorForm" type="com.doctor.pojo.Doctor"></form-bean>
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings>
+  	<action path="/doctor" type="com.doctor.servlet.DoctorAction" name="doctorForm" parameter="method">
+  		<forward name="success" path="/WEB-INF/doctor/doctor_list.jsp"></forward>
+  		<forward name="upsuccess" path="/WEB-INF/doctor/doctor_update.jsp"></forward>
+  		<forward name="sasuccess" path="/WEB-INF/doctor/doctor_add.jsp"></forward>
+  		<forward name="altersuccess" path="/doctor.do?method=query"></forward>
+  		<forward name="addsuccess" path="/doctor.do?method=query"></forward>
+  	</action>
+  </action-mappings>
+  <message-resources parameter="com.yourcompany.struts.ApplicationResources" />
+</struts-config>
+

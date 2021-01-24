@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action=”” method=”post”>
+    用户名：<input type="text" id="username" name="username" onblur="checkName()" >
+    <span id="info" ></span><br>
+    密码：<input type="text" name="password" ><br>
+    年龄：<input type="text" name="age" ><br>
+    <input type="submit" value="注册"><br>
+</form>
+<script>
+    var xmlHttpReq;
+    function createXMLHttpRequest(){
+        xmlHttpReq = new XMLHttpRequest();
+    }
+    function callBackFun(){
+        //alert(xmlHttpReq.readyState);
+        if(xmlHttpReq.readyState==4&&xmlHttpReq.readystatus==200){
+            //获取回来的数据 局部更新页面
+            var result = xmlHttpReq.responseText;
+            //将数据放入info
+            document.getElementById("info").innerHTML=result;
+        }
+    }
+    function checkName(){
+        //获取username
+        var username= document.getElementById("username").value;
+        //验证是否为空
+        if(username==""){
+            alert("用户名不能为空！");
+        }else{
+            //ajax验证
+            //1，创建异步对象XMLHttpRequest
+            createXMLHttpRequest();
+            //2，设置异步对象 请求方式 url 是否异步
+            xmlHttpReq.open("GET","/checkName.action?username=" +username, true);
+            //3，设置异步对象的回调函数
+            /**
+             * 异步对象的readyState属性代表状态标识，走到哪一步，用于监听/标识的那几个状态
+             * 值就会有相应的改变。状态改变的属性为onreadystatechange = callBackFun;
+             *
+             * callBackFun不能加”()”。
+             * 加上”()”代表直接调用函数，不加”()”是把函数赋给另一个东西，把函数名注册给
+             * XMLHttpRequest对象的一个属性，如此，只要状态值改变了，它就会调用callBackFun()这个函数。
+             *
+             * 状态值为0和1的时候是在准备，不会调用callBackFun()函数，2和3的时候都会调用。
+             * 不能把更新页面的代码写入callBackFun()函数中，否则会调用3次，这样，会导致相应
+             * 还没回来的时候就开始更新页面的，所以ajax就会失效。只有状态是4的时候，才应	该去更新页面。
+             */
+            xmlHttpReq.onreadystatechange = callBackFun;
+            //4，异步对象发送请求
+            xmlHttpReq.send(null);
+        }
+    }
+</script>
+
+</body>
+</html>

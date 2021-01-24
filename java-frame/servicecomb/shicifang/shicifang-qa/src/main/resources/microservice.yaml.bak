@@ -1,0 +1,30 @@
+APPLICATION_ID: start.servicecomb.io
+service_description:
+  name: shicifang-qa
+  version: 0.0.2
+servicecomb:
+  tracing:
+    collector:
+      address: http://127.0.0.1:9411
+  circuitBreaker: #熔断
+    Provider:
+      shicifang-friend:
+        requestVolumeThreshold: 1 #为了测试更加明显 把熔断访问量改为1 使熔断的条件更容易达到
+  fallbackpolicy:
+    provider:
+      policy: returnnull #表示熔断一旦产生 策略是什么都不做
+  flowcontrol:
+    Provider:
+      qps:
+        limit: #limit表示界限值
+          gateway: 1 #网关的流量访问限制改为1个 即最多允许1个请求（为了验证限流的效果 设置为1）
+          #这里的限流配置可以不做 后续的华为商业版中实现管理 用起来会更舒服一些
+  handler:
+    chain:
+      Provider:
+        default: qps-flowcontrol-provider,bizkeeper-provider,tracing-provider
+  rest:
+    address: 0.0.0.0:9083
+  service:
+    registry:
+      address: http://127.0.0.1:30100

@@ -1,0 +1,7 @@
+button.jsp:
+	base.jsp：预定义样式
+	size.jsp：尺寸
+	active.jsp：激活状态
+	linkbutton.jsp：超链接按钮
+	disabled.jsp：禁用状态
+	buttonCls.jsp：按钮类

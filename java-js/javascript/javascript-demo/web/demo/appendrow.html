@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素追加和删除</title>
+</head>
+<body>
+<form>
+    <table>
+        <tr>
+            <td>
+                <input type="button" value="小白侠" onclick="add()">
+            </td>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" value="1" name="maomao">
+            </td>
+            <td>111</td>
+            <td>11</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" value="2" name="maomao">
+            </td>
+            <td>222</td>
+            <td>22</td>
+            <td>22</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" value="3" name="maomao">
+            </td>
+            <td>333</td>
+            <td>33</td>
+            <td>33</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" value="4" name="maomao">
+            </td>
+            <td>444</td>
+            <td>44</td>
+            <td>44</td>
+        </tr>
+        <tbody id="show"></tbody>
+        <tr>
+            <td colspan=4 align="center">
+                <input type="checkbox" onclick="selectAll()">全选
+                <input type="checkbox" onclick="reserver()">反选
+                <input type="checkbox"  onclick="reset()">取消
+                <input type="button" value="删除" onclick="deletebatch()">
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+    function selectAll(){
+        var result = document.getElementsByName('maomao');
+        for(var i=0;i<result.length;i++){
+            result[i].checked = true;
+        }
+    }
+    function reserver(){
+        var result = document.getElementsByName('maomao');
+        for(var i=0;i<result.length;i++){
+            if(result[i].checked){
+                result[i].checked = false;
+            }else{
+                result[i].checked = true;
+            }
+        }
+        //}
+    }
+    function reset(){
+        var result = document.getElementsByName('maomao');
+        for(var i=0;i<result.length;i++){
+            result[i].checked = false;
+
+        }
+    }
+
+    var idvalue = 5
+    function add(){
+        var tr1= document.createElement('tr');
+        var td1= document.createElement('td');
+        var td2= document.createElement('td');
+        var td3= document.createElement('td');
+        var td4= document.createElement('td');
+        var inp= document.createElement('input');
+        inp.setAttribute("type","checkbox");
+        inp.setAttribute("name","maomao");
+        inp.setAttribute("value", idvalue++);
+        var name = document.createTextNode("xiaobaixia");
+        var sex = document.createTextNode("nan");
+        var age = document.createTextNode("25");
+        td1.appendChild(inp);
+        td2.appendChild(name);
+        td3.appendChild(sex);
+        td4.appendChild(age);
+        tr1.appendChild(td1);
+        tr1.appendChild(td2);
+        tr1.appendChild(td3);
+        tr1.appendChild(td4);
+        var show = document.getElementById('show');
+        show.appendChild(tr1);
+    }
+    
+    function deletebatch() {
+        var result = document.getElementsByName("maomao");
+        var flag = false;
+        var ids = "";
+        for (var i = 0; i< result.length; i++){
+            if (result[i].checked){
+                ids += result[i].value + ",";
+                flag = true;
+            }
+        }
+        if (!flag) {
+            alert("请选择要删除的数据！");
+            return;
+        } else{
+            ids = ids.substring(0, ids.length - 1);
+            alert(ids);
+            //window.location.reload;
+        }
+    }
+    
+</script>
+</body>
+</html>

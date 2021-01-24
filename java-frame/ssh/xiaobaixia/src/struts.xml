@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.ui.theme" value="simple"></constant>
+	
+	<package name="wb-ps" extends="struts-default" namespace="/">
+<!-- 		<action name="user" class="org.jiangyu.action.UserAction"> -->
+<!-- 			<result name="tomaster">/WEB-INF/master/master.jsp</result> -->
+<!-- 		</action> -->
+		
+		<action name="role_*" class="roleAction" method="{1}">
+			<result name="found">/WEB-INF/role/role_list.jsp</result>
+			<result name="toadd">/WEB-INF/role/role_add.jsp</result>
+			<result name="foundone">/WEB-INF/role/role_update.jsp</result>
+			<result name="success" type="redirect">role_findAll.action</result>
+		</action>
+		
+		<action name="dept_*" class="departmentAction" method="{1}">
+			<result name="found">/WEB-INF/department/department_list.jsp</result>
+			<result name="append">/WEB-INF/department/department_add.jsp</result>
+			<result name="foundone">/WEB-INF/department/department_update.jsp</result>
+			<result name="success" type="redirect">dept_findAll.action</result>
+		</action>
+		
+	</package>
+
+</struts>    

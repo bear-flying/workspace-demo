@@ -1,0 +1,485 @@
+/* 普通输入框 */
+.hr_inp_1 {
+    height: 22px;
+    padding-left: 10px;
+    line-height: 22px;
+}
+
+/** 单选按钮样式 */
+.hr_radio_div {
+    height: 20px;
+    float: left;
+    margin-bottom: 5px;
+    padding-right: 30px;
+}
+
+.hr_radio_div input {
+    float: left;
+    margin-right: 5px;
+}
+
+.hr_radio_div span {
+    float: left;
+    margin-top: 1px;
+    line-height: 20px;
+}
+
+/** 请假类别设置单选按钮样式 */
+.hr_b_radio_div {
+    height: 20px;
+    float: left;
+    margin-bottom: 5px;
+    padding-right: 30px;
+}
+
+.hr_b_radio_div input {
+    float: left;
+    margin-right: 5px;
+}
+
+.hr_b_radio_div span {
+    float: left;
+    margin-top: 1px;
+    line-height: 20px;
+}
+
+/** 多选按钮样式 */
+.hr_che_div {
+    height: 20px;
+    float: left;
+    margin-bottom: 5px;
+    padding-right: 30px;
+}
+
+.hr_che_div input {
+    float: left;
+    margin-right: 5px;
+}
+
+.hr_che_div span {
+    float: left;
+    margin-top: 1px;
+    line-height: 20px;
+}
+
+/* 合同提醒设置天数输入框 */
+.hr_smal_inp {
+    width: 30px;
+    height: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 10px;
+    line-height: 20px;
+    float: left;
+}
+
+.hr_smal_span {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+}
+
+/* 合同标题 */
+.contact_label_top_title {
+    height: 38px;
+    text-align: left;
+    text-indent: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 合同外边框 */
+.hr_table_view {
+    margin-top: 20px;
+    width: 98%;
+    font-family: Microsoft Yahei;
+    font-size: 13px;
+}
+
+.hr_table_td {
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 25px;
+}
+
+.hr_table_td0101 {
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.hr_table_edit {
+    margin-right: 2%;
+    margin-bottom:10px;
+    font-family: Microsoft Yahei;
+    font-size: 13px;
+}
+
+.contract_table_edit {
+    width: 97%;
+    margin-right: 2%;
+    margin-left: 1%;
+    margin-bottom: 20px;
+    font-family: Microsoft Yahei;
+    font-size: 13px;
+
+}
+
+.contract_table_edit td {
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 25px;
+
+}
+
+/* 人事档案左右块 */
+.hr_info_L {
+    width: 73%;
+    float: left;
+}
+
+.hr_userinfo_R {
+    width: 24%;
+    float: right;
+    padding-top: 0px;
+    height: 300px
+}
+
+/* 照片大小 */
+.image_1{
+    width: 165px;
+    height: 220px;
+    margin-top: 20px;
+}
+/* 照片大小 */
+.image_2 {
+    width: 260px;
+    height: 161px;
+    float: left;
+    margin: 0px;
+}
+
+.hr_up_btn_left {
+    width: 4px;
+    height: 24px;
+    background-image: url( ../images/hr_btn_left.png );
+    float: left;
+
+}
+
+.hr_up_btn_middle {
+    height: 24px;
+    line-height: 24px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-image: url( ../images/hr_btn_mid.png );
+    background-repeat: repeat-x;
+    float: left;
+}
+
+.hr_up_btn_right {
+    width: 4px;
+    height: 24px;
+    background-image: url( ../images/hr_btn_right.png );
+    float: left;
+}
+
+/* 人事档案输入框 */
+.hr_inp_2 {
+    float: left;
+    width: 90%;
+    height: 22px;
+    padding-left: 10px;
+    line-height: 22px;
+}
+
+/* 人事查询输入框 */
+.hr_inp_3 {
+    float: left;
+    width: 200px;
+    height: 22px;
+    padding-left: 10px;
+    line-height: 22px;
+}
+
+/* 人事查询年龄范围输入框 */
+.hr_inp_4 {
+    float: left;
+    width: 60px;
+    height: 22px;
+    padding-left: 10px;
+    line-height: 22px;
+}
+
+/** 人事查询多选按钮样式 */
+.hr_q_che_div {
+    height: 20px;
+    float: left;
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+.hr_q_che_div input {
+    float: left;
+    margin-right: 3px;
+}
+
+.hr_q_che_div span {
+    float: left;
+    margin-top: 0px;
+    line-height: 20px;
+}
+
+/* 人事档案标题 */
+.hr_label_top_title {
+    width: 96%;
+    margin-top: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 38px;
+    text-align: left;
+    text-indent: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/*编辑画面说明文字样式 */
+.e_r_span {
+    margin-left: 5px;
+    height: 18px;
+    line-height: 18px;
+}
+
+/*查询画面说明文字样式 */
+.v_r_span {
+    margin-left: 12px;
+    height: 18px;
+    line-height: 18px;
+}
+
+
+/* 个人设置中消息提醒设置 */
+#MsgAwokeSet {
+    float: left;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.MsgAwokeSet {
+    float: left;
+    width: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.MsgAwokeSetRadio {
+    height: 20px;
+    float: left;
+    padding-right: 20px;
+}
+
+.MsgAwokeSetRadio input {
+    float: left;
+    margin-right: 5px;
+}
+
+.MsgAwokeSetRadio span {
+    float: left;
+    margin-top: 1px;
+    line-height: 20px;
+}
+
+/* 部门岗位左侧树 */
+.hr_scroll_box_1 {
+    width: 100%;
+    float: left;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* 显示字段设置 */
+.set_L_top {
+    width: 270px;
+    float: left;
+    height: 35px;
+    line-height: 28px;
+}
+
+.set_Hr_c {
+    width: 33px;
+    float: left;
+    text-align: center;
+    margin-top: 60px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.set_Hr_c img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.set_L_con select {
+    padding-left: 10px
+}
+
+.set_R_con select {
+    padding-left: 10px
+}
+
+
+/* 人事类别查询选择 */
+.hr_inputcheckbox {
+    margin-right: 5px;
+    margin-left: 0px
+}
+
+.k_t_m_bg_1 {
+    height: 28px;
+    hcursor: pointer;
+    white-space: nowrap;
+    padding-top: 6px;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+}
+
+.k_t_m_bg_1_h {
+    height: 28px;
+    cursor: pointer;
+    white-space: nowrap;
+    padding-top: 6px;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+}
+
+.lable_right_span {
+    padding-top: 4px;
+    padding-left: 5px;
+    padding-right: 5px;
+    float: left;
+}
+
+.t_n_td {
+    padding-left: 20px;
+    font-size: 14px
+}
+
+.hr_downoad_td table td {
+    border: 0px;
+}
+
+.hr_table_tree {
+    font-size: 12px;
+    width: 100%;
+    padding: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.clear {
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: auto;
+}
+
+.userSettring_addr {
+}
+
+.m_p_span {
+    background: url( ../images/m_p.png ) no-repeat;
+    padding-left: 20px;
+}
+
+.edit_item_table .date_td1 {
+    padding-right: 0px;
+}
+
+.edit_item_table .com_td {
+    padding-right: 0px;
+}
+
+.date_td input {
+    width: 90px;
+
+}
+
+.date_td1 input {
+    width: 75px;
+
+}
+
+.contract_table_edit .date_td {
+    padding-right: 0px;
+}
+
+.contract_table_edit .com_td {
+    padding-right: 0px;
+}
+
+.edit_table_1 .date_td {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.font_style1 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.font_style {
+    font-size: 15px;
+}
+
+
+.div1 {
+    float: left;
+}
+
+.div1 font {
+    font-size: 12px;
+    float: left;
+    margin-left: 5px;
+    width: 12px;
+}
+
+.div1 img {
+    float: left;
+    margin-left: 5px;
+    margin-top: 6px;
+}
+
+.font_style2 {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.font_style3 {
+    font-size: 12px;
+}
+
+.image_style1 {
+    margin-left: 50px;
+    margin-top: 30px
+}
+
+.hr_input_0138 {
+    float: left;
+    width: 160px;
+    height: 22px;
+    padding-left: 20px;
+    line-height: 22px;
+}
+
+.cert_table .date_input{width:80px;}
+.edit_cert_span{margin-left:10px;line-height:25px;cursor:pointer;}
+.edit_cert_span :hover{};
+

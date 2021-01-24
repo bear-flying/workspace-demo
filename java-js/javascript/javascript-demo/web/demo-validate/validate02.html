@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+ <title>表单验证02</title>
+ <meta name="Generator" content="EditPlus">
+ <meta name="Author" content="">
+ <meta name="Keywords" content="">
+ <meta name="Description" content="">
+</head>
+
+<body>
+1、邮编：<input type='text' id='a'/><input type='button' value='验证' onclick='f1()'/><br/>
+2、手机号：<input type='text' id='b'/><input type='button' value='验证' onclick='f2()'/><br/>
+3、电话号码：<input type='text' id='c'/><input type='button' value='验证' onclick='f3()'/><br/>
+4、身份证：<input type='text' id='d'/><input type='button' value='验证' onclick='f4()'/><br/>
+5、正负10000以内的整数：<input type='text' id='e'/><input type='button' value='验证' onclick='f5()'/><br/>
+6、小数：<input type='text' id='f'/><input type='button' value='验证' onclick='f6()'/><br/>
+7、邮件：<input type='text' id='g'/><input type='button' value='验证' onclick='f7()'/><br/>
+8、QQ：<input type='text' id='h'/><input type='button' value='验证' onclick='f8()'/><br/>
+9、中文：<input type='text' id='i'/><input type='button' value='验证' onclick='f9()'/><br/>
+</body>
+</html>
+<script type="text/javascript">
+    <!--
+    function f1()
+    {
+        var s = document.getElementById('a').value;
+        var reg = /^\d{6}$/
+        if(reg.test(s)==true)
+        {
+            alert('ok')
+        }else
+        {
+            alert('no')
+        }
+    }
+    function f2()
+    {
+        var s = document.getElementById('b').value;
+        var reg = /^1[358]\d{9}$/
+        if(reg.test(s)==true)
+        {
+            alert('ok')
+        }else
+        {
+            alert('no')
+        }
+    }
+    function f3()
+    {
+        var s = document.getElementById('c').value;
+        var reg = /^(0086)?0\d{2,4}-[1-9]\d{6,7}$/
+        var reg1 = /^\d{3,4}-\d{7,8}$/
+        var reg2 = /^(\d{3}-\d{8}|\d{4}-\d{7})$/
+        if(reg.test(s))
+        {
+            alert('ok')
+        }else
+        {
+            alert('no')
+        }
+    }
+    function f4()
+    {
+        var s = document.getElementById('d').value;
+        var reg = /^(\d{15}|\d{18})$/
+        var reg1 = /^(\d{15}|\d{17}[0-9x])$/i
+        if(reg1.test(s))
+        {
+            alert('ok')
+        }else
+        {
+            alert('no')
+        }
+    }
+    function f5()
+    {	var s = document.getElementById('e').value;
+        var reg = /^-?([1-9]\d{0,3}|0|10000)$/
+        if(reg.test(s))
+        {
+            alert('yes')
+        }else
+        {
+            alert('no')
+        }
+
+    }
+    function f6()
+    {	var s = document.getElementById('f').value;
+        var reg = /^(0|[1-9]\d*)\.\d+$/
+        if(reg.test(s))
+        {
+            alert('ok')
+        }else
+        {
+            alert('no')
+        }
+
+    }
+    function f7()
+    {	var s = document.getElementById('g').value;
+        var  reg = /^\w+@\w+\.(com|cn|gov|net|edu)$/
+        var reg1 = /^\w+@\w+\.(com\.cn|cn|net)$/
+        var reg2 = /^\w+@\w+(\.\w+)+$/
+        if(reg2.test(s))
+        {
+            alert('ok')
+        }else
+        {
+            alert('no')
+        }
+
+    }
+    function f8()
+    {
+        var s = document.getElementById('h').value;
+        var reg = /^[1-9]\d{4,}$/
+        if(reg.test(s))
+        {
+            alert('yes')
+        }else
+        {
+            alert('no')
+        }
+    }
+    function f9()
+    {	var s = document.getElementById('i').value;
+        var  reg = /^[\u4e00-\u9fa5][小晓][\u4e00-\u9fa5]$/
+        if(reg.test(s))
+        {
+            alert('yes')
+        }else
+        {
+            alert('no')
+        }
+
+    }
+    //-->
+</script>

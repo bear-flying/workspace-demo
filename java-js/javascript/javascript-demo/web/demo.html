@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <input type="button" value="开始" id="start" onclick="start()">
+    <input type="text" id="timer">
+    <input type="button" value="停止" id="end" onclick="end()">
+
+    <script>
+
+        var timestr;
+
+        function getTimeStr() {
+            document.getElementById("timer").value = new Date().toLocaleString();
+        }
+
+        function start(){
+            timestr = setInterval("getTimeStr()",1000);
+            document.getElementById("start").disabled = true;
+            document.getElementById("end").disabled = false;
+        }
+
+        function end(){
+            clearInterval(timestr);
+            document.getElementById("start").disabled = false;
+            document.getElementById("end").disabled = true;
+        }
+
+    </script>
+
+</body>
+</html>

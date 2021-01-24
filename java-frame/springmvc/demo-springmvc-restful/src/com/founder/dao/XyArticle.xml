@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.founder.mapper.XyArticle">
+	
+	<resultMap type="com.founder.publish.FlowNode" id="FlowNode">
+		<result column="FLOWNODEID" property="currentNode"/>
+		<result column="WAITINGNAME" property="currentStatus"/>
+	</resultMap>
+	
+	<insert id="insertArt" parameterType="com.founder.pojo.XyArticleEntity" >
+		INSERT INTO xy_article(
+			SYS_DOCUMENTID, SYS_DOCLIBID, SYS_FOLDERID, SYS_DELETEFLAG, sys_currentflow, 
+			sys_islocked, sys_currentnode, sys_currentstatus, a_status, a_order, 
+			sys_topic, a_leadTitle, a_url, a_content, a_source, 
+			sys_authors, sys_created, a_pubTime, sys_lastmodified, a_column, a_multimediaLink, 
+			a_channel,
+			a_siteID,a_type,a_columnID,a_columnAll 
+		)VALUES(
+			#{sys_documentid}, #{sys_doclibid}, #{sys_folderid} ,0, 1, 
+			0, #{sys_currentnode}, #{sys_currentstatus},3, #{a_order}, 
+			#{sys_topic}, #{a_leadTitle}, #{a_url} ,#{a_content}, #{a_source}, 
+			#{sys_authors}, #{sys_created}, #{a_pubTime} ,#{sys_lastmodified} ,#{a_column}, #{a_multimediaLink},
+			1,
+			#{a_siteID},#{a_type},#{a_columnID},#{a_columnAll}
+		)
+	</insert>
+	
+	<insert id="insertOriginalArt" parameterType="com.founder.pojo.XyArticleEntity" >
+		INSERT INTO xy_original(
+			SYS_DOCUMENTID, SYS_DOCLIBID, SYS_FOLDERID, SYS_DELETEFLAG,
+			sys_islocked, a_status, sys_topic, a_leadTitle, a_url, a_content, a_source, 
+			sys_authors, sys_created, sys_lastmodified, a_multimediaLink, 
+			a_type
+		)VALUES(
+			#{sys_documentid}, #{sys_doclibid}, #{sys_folderid}, 0,  
+			0, 3, #{sys_topic}, #{a_leadTitle}, #{a_url},#{a_content}, #{a_source}, 
+			#{sys_authors}, #{sys_created}, #{sys_lastmodified} ,#{a_multimediaLink},
+			#{a_type}
+		)
+	</insert>
+	
+	<select id="getFlowNodes" resultMap="FlowNode" parameterType="int">
+		SELECT FLOWNODEID, WAITINGNAME
+		FROM  e5flow_flownodes
+		WHERE FLOWID=#{value}
+	</select>
+	
+	
+</mapper>

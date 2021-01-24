@@ -1,0 +1,7 @@
+inputgroup.jsp：
+	base.jsp：基本实例
+	size.jsp：尺寸
+	check.jsp：作为额外元素的多选框和单选框
+	button.jsp：作为额外元素的按钮
+	dropdown.jsp：作为额外元素的按钮式下拉菜单
+	split.jsp：作为额外元素的分裂式按钮下拉菜单
